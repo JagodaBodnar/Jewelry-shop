@@ -5,6 +5,12 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import RootContext from "../context/context";
 import styled from "styled-components";
+import {
+  HeadingTwo,
+  HeadingOne,
+} from "../components/reusableComponents/Heading";
+import { IoIosClose, IoIosRemove, IoIosAdd } from "react-icons/io";
+import Button from "../components/reusableComponents/Button";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -20,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     outline: "none",
     borderRadius: "10px",
     height: "90vh",
-    width: "35vw",
+    width: "45vw",
   },
 }));
 
@@ -28,13 +34,44 @@ const StyledCartWrapper = styled.div`
   position: absolute;
   z-index: 9999;
 `;
+const StyledCartHeader = styled.div`
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 5px;
+  justify-content: center;
+  align-items: center;
+  border-bottom: solid 1px #ececec;
+`;
+const StyledCartItemList = styled.ul`
+  list-style: none;
+`;
+const StyledCartItemElement = styled.li`
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 5px;
+  justify-content: center;
+  align-items: center;
+  border-bottom: solid 1px #ececec;
+`;
+const StyledCartItemImage = styled.img`
+  width: 100px;
+  height: 100px;
+`;
 
 const Cart = () => {
   const classes = useStyles();
 
   const context = useContext(RootContext);
 
-  const { isCartOpen, handleCartClose, cart, removeProductFromCart } = context;
+  const {
+    isCartOpen,
+    handleCartClose,
+    cart,
+    removeProductFromCart,
+    increaseItemCounter,
+    decreaseItemCounter,
+    itemCounter,
+  } = context;
 
   return (
     <StyledCartWrapper>
@@ -52,8 +89,14 @@ const Cart = () => {
       >
         <Fade in={isCartOpen}>
           <div className={classes.paper}>
-            <h1>Your Cart</h1>
-            <ul>
+            <StyledCartHeader>
+              <HeadingOne cartheader>Cart</HeadingOne>
+              <HeadingOne cartitemheader>Quantity</HeadingOne>
+              <HeadingOne cartitemheader>Price</HeadingOne>
+              <span></span>
+              <HeadingOne cartitemheader>Sum</HeadingOne>
+            </StyledCartHeader>
+            <StyledCartItemList>
               {cart.map((item) => {
                 const {
                   productName,
@@ -62,18 +105,39 @@ const Cart = () => {
                   productImage,
                 } = item;
                 return (
-                  <li key={productName}>
-                    <img src={productImage} alt="product foto" />
-                    <h6>{productName}</h6>
-                    <h6>{productQuantity}</h6>
-                    <h6>{productPrice}$</h6>
-                    <button onClick={() => removeProductFromCart(productName)}>
-                      x
-                    </button>
-                  </li>
+                  <>
+                    <StyledCartItemElement key={productName}>
+                      <StyledCartItemImage
+                        src={productImage}
+                        alt="product foto"
+                      />
+                      <HeadingTwo cartItemName>{productName}</HeadingTwo>
+                      <HeadingTwo bold cartItemQuantity>
+                        <Button quantity onClick={decreaseItemCounter}>
+                          <IoIosRemove />
+                        </Button>
+                        <span>
+                          {productQuantity} {itemCounter}
+                        </span>
+                        <Button quantity onClick={increaseItemCounter}>
+                          <IoIosAdd />
+                        </Button>
+                      </HeadingTwo>
+                      <HeadingTwo bold>{productPrice}$</HeadingTwo>
+                      <Button
+                        close
+                        onClick={() => removeProductFromCart(productName)}
+                      >
+                        <IoIosClose />
+                      </Button>
+                      <HeadingTwo bold>
+                        {itemCounter * productPrice}$
+                      </HeadingTwo>
+                    </StyledCartItemElement>
+                  </>
                 );
               })}
-            </ul>
+            </StyledCartItemList>
           </div>
         </Fade>
       </Modal>

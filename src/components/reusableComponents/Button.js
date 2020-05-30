@@ -62,6 +62,26 @@ const Button = styled.button`
         margin-left: 10px;
         padding: 3px 0;
       `}
+      ${({ close }) =>
+        close &&
+        css`
+          color: grey;
+        `}
+        ${({ quantity }) =>
+          quantity &&
+          css`
+            color: grey;
+            font-size: 11px;
+            align-items: center;
+            background-color: #ececec;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin: 2px 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          `}
 `;
 
 export default Button;

@@ -5,19 +5,18 @@ import ProductsFilterMenu from "../../Navigation/ProductsFilterMenu/ProductsFilt
 import Button from "../../components/reusableComponents/Button";
 import styled from "styled-components";
 import { HeadingOne } from "../../components/reusableComponents/Heading";
+import { useSpring, animated, config } from "react-spring";
 
 const Products = () => {
   const context = useContext(RootContext);
 
-  const [isAnimRunning, setAnimRunning] = useState(false);
   const [isProductMenuVisible, setProductMenuVisiblity] = useState(false);
 
-  const runAnim = () => {
-    setAnimRunning(true);
-    setTimeout(() => {
-      setAnimRunning(false);
-    }, 901);
-  };
+  const anim = useSpring({
+    config: { duration: 500 },
+    height: isProductMenuVisible ? "280px" : "0px",
+    opacity: isProductMenuVisible ? "1" : "0",
+  });
 
   const StyledProductCategoriesContainer = styled.div`
     position: sticky;
@@ -35,30 +34,24 @@ const Products = () => {
     width: 60vw;
     margin: 20px auto;
   `;
-
   return (
     <>
       <StyledProductCategoriesContainer>
         <StyledProductNavContainer>
           <HeadingOne>Products</HeadingOne>
           <Button
-            disabled={isAnimRunning ? true : false}
             filter
             onClick={() => {
               setProductMenuVisiblity(!isProductMenuVisible);
-              runAnim();
             }}
           >
             {isProductMenuVisible ? "Close filter" : "Filter"}
           </Button>
         </StyledProductNavContainer>
-        {isProductMenuVisible ? (
-          <ProductsFilterMenu anim={isAnimRunning} />
-        ) : (
-          ""
-        )}
+        <animated.div style={anim}>
+          <ProductsFilterMenu isProductMenuVisible={isProductMenuVisible} />
+        </animated.div>
       </StyledProductCategoriesContainer>
-
       <ProductsList />
     </>
   );

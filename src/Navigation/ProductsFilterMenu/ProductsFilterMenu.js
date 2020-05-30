@@ -4,40 +4,36 @@ import styled, { keyframes, css } from "styled-components";
 import Button from "../../components/reusableComponents/Button";
 import { HeadingTwo } from "../../components/reusableComponents/Heading.js";
 import { BsSearch } from "react-icons/bs";
+import { IoIosClose } from "react-icons/io";
 import {
   productsCategories,
   mineral,
   metal,
 } from "../../localData/productsCategories";
+// import { useSpring, animated, config } from "react-spring";
 
-const ProductsFilterMenu = ({ anim }) => {
+const ProductsFilterMenu = () => {
   const context = useContext(RootContext);
+
+  // const anim = useSpring({
+  //   config: { duration: 1000 },
+  //   height: isProductMenuVisible ? "280px" : "0px",
+  //   opacity: isProductMenuVisible ? "1" : "0",
+  // });
 
   const {
     resetFilters,
-    filterProductsByType,
+    filterProducts,
     filterProductsBySearchInput,
-    filterProductsByMetal,
-    filterProductsByMineral,
+    categoryFilter,
+    removeFilterCategory,
   } = context;
 
-  const navAnim = keyframes`
-  0% {opacity: 0; height: 0px;}
-  100% {opacity: 1; height: 280px;}
-  
-  `;
-
-  const StyledFilterNavigation = styled.nav`
+  const AnimatedNavbarWrapper = styled.nav`
     background-color: #051c26;
     padding: 5px;
     height: 280px;
     width: 100%;
-
-    ${({ anim }) =>
-      anim &&
-      css`
-        animation: ${navAnim} 0.9s ease-in-out;
-      `}
   `;
 
   const StyledCategoriesContainer = styled.div`
@@ -63,6 +59,15 @@ const ProductsFilterMenu = ({ anim }) => {
     &:hover {
       color: #dbbe23;
     }
+    ${({ selectedCategory }) =>
+      selectedCategory &&
+      css`
+        margin-bottom: 0;
+        color: grey;
+        &:hover {
+          color: grey;
+        }
+      `}
   `;
   const StyledSearchInput = styled.input`
     outline: none;
@@ -77,13 +82,29 @@ const ProductsFilterMenu = ({ anim }) => {
     justify-content: center;
     align-items: flex-start;
   `;
+  const StyledSelectedCategoryContainer = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    list-style: none;
+    align-items: center;
+    grid-column: span 2;
+  `;
+  const StyledSelectedCategoryElement = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    margin: 2px;
+    padding: 2px;
+    border-radius: 2px;
+  `;
 
   return (
-    <StyledFilterNavigation anim={anim}>
+    <AnimatedNavbarWrapper>
       <StyledCategoriesContainer>
         <div>
           <HeadingTwo categoryName>Metal</HeadingTwo>
-          <StyledCategories onClick={filterProductsByMetal}>
+          <StyledCategories onClick={filterProducts}>
             {metal.map((item) => {
               return (
                 <StyledCategoryItem data-target={item}>
@@ -95,7 +116,7 @@ const ProductsFilterMenu = ({ anim }) => {
         </div>
         <div>
           <HeadingTwo categoryName>Mineral</HeadingTwo>
-          <StyledCategories onClick={filterProductsByMineral}>
+          <StyledCategories onClick={filterProducts}>
             {mineral.map((item) => {
               return (
                 <StyledCategoryItem data-target={item}>
@@ -107,7 +128,7 @@ const ProductsFilterMenu = ({ anim }) => {
         </div>
         <div>
           <HeadingTwo categoryName>Type</HeadingTwo>
-          <StyledCategories onClick={filterProductsByType}>
+          <StyledCategories onClick={filterProducts}>
             {productsCategories.map((item) => {
               return (
                 <StyledCategoryItem data-target={item}>
@@ -129,12 +150,27 @@ const ProductsFilterMenu = ({ anim }) => {
             <BsSearch />
           </Button>
         </StyledForm>
-        <div id="filter"></div>
         <Button resetFilter onClick={resetFilters}>
           Reset Filters
         </Button>
+        <StyledSelectedCategoryContainer>
+          {categoryFilter.map((item) => {
+            return (
+              <>
+                <StyledSelectedCategoryElement>
+                  <StyledCategoryItem selectedCategory data-target={item}>
+                    {item}
+                  </StyledCategoryItem>
+                  <Button close onClick={() => removeFilterCategory(item)}>
+                    <IoIosClose />
+                  </Button>
+                </StyledSelectedCategoryElement>
+              </>
+            );
+          })}
+        </StyledSelectedCategoryContainer>
       </StyledCategoriesContainer>
-    </StyledFilterNavigation>
+    </AnimatedNavbarWrapper>
   );
 };
 

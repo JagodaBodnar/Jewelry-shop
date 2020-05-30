@@ -2,6 +2,22 @@ import styled, { css } from "styled-components";
 
 export const HeadingOne = styled.h1`
   color: #103e52;
+  ${({ cartheader }) =>
+    cartheader &&
+    css`
+      grid-column: span 4;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    `}
+  ${({ cartitemheader }) =>
+    cartitemheader &&
+    css`
+      text-align: center;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 20px;
+    `}
 `;
 
 export const HeadingTwo = styled.h2`
@@ -29,4 +45,22 @@ export const HeadingTwo = styled.h2`
       color: #dbbe23;
       font-family: "Scope One", serif;
     `}
+    ${({ cartItemName }) =>
+      cartItemName &&
+      css`
+        grid-column: span 3;
+        text-align: center;
+        font-size: 16px;
+      `}
+      ${({ cartItemQuantity }) =>
+        cartItemQuantity &&
+        css`
+          display: flex;
+          justify-content: center;
+        `}
+      ${({ bold }) =>
+        bold &&
+        css`
+          font-weight: bold;
+        `}
 `;

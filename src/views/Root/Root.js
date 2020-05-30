@@ -12,15 +12,16 @@ const Root = () => {
   const initialState = [...productsDataArray];
 
   const [cartCounter, setCartCounter] = useState(0);
+
   const [products, setProducts] = useState([...initialState]);
   const [isCartOpen, setCartOpen] = useState(false);
   const [cart, setCart] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState([]);
 
   const addProductToCart = (productName) => {
     const filteredProducts = products.filter(
       (product) => product.productName === productName
     );
-
     setCart([...cart, ...filteredProducts]);
   };
 
@@ -28,6 +29,7 @@ const Root = () => {
     const filteredProducts = cart.filter(
       (product) => product.productName !== productName
     );
+    decreaseCartCounter();
 
     setCart([...filteredProducts]);
   };
@@ -43,32 +45,45 @@ const Root = () => {
   const increaseCartCounter = () => {
     setCartCounter(cartCounter + 1);
   };
-
-  const filterProductsByType = (e) => {
-    const filteredProducts = products.filter(
-      (product) => product.categories === e.target.getAttribute("data-target")
+  const decreaseCartCounter = () => {
+    setCartCounter(cartCounter - 1);
+  };
+  const filterProducts = (e) => {
+    let filterAttribute = e.target.getAttribute("data-target");
+    const filteredProducts = products.filter((product) =>
+      product.categories.includes(filterAttribute)
     );
     setProducts([...filteredProducts]);
+    const filterCategory = categoryFilter.concat(filterAttribute);
+    setCategoryFilter([...filterCategory]);
   };
 
-  const filterProductsByMetal = (e) => {
-    const filteredProducts = products.filter(
-      (product) => product.metal === e.target.getAttribute("data-target")
-    );
-    setProducts([...filteredProducts]);
-  };
+  // const filterProductsByMetal = (e) => {
+  //   let filterAttribute = e.target.getAttribute("data-target");
+  //   const filteredProducts = products.filter(
+  //     (product) => product.metal === filterAttribute
+  //   );
 
-  const filterProductsByMineral = (e) => {
-    const filteredProducts = products.filter(
-      (product) => product.mineral === e.target.getAttribute("data-target")
-    );
-    setProducts([...filteredProducts]);
-  };
+  //   setProducts([...filteredProducts]);
+
+  //   const filterCategory = categoryFilter.concat(filterAttribute);
+  //   setCategoryFilter([...filterCategory]);
+  // };
+
+  // const filterProductsByMineral = (e) => {
+  //   let filterAttribute = e.target.getAttribute("data-target");
+  //   const filteredProducts = products.filter(
+  //     (product) => product.mineral === filterAttribute
+  //   );
+  //   setProducts([...filteredProducts]);
+  //   const filterCategory = categoryFilter.concat(filterAttribute);
+  //   setCategoryFilter([...filterCategory]);
+  // };
 
   const filterProductsBySearchInput = (e) => {
     e.preventDefault();
     let tempProducts = [...initialState];
-    const searchInputValue = e.target.getAttribute("data-target");
+    const searchInputValue = e.target.search.value;
 
     if (searchInputValue.length > 0) {
       tempProducts = tempProducts.filter((item) => {
@@ -86,7 +101,9 @@ const Root = () => {
 
   const resetFilters = () => {
     setProducts([...initialState]);
+    setCategoryFilter([]);
   };
+  const removeFilterCategory = (type) => {};
 
   return (
     <BrowserRouter>
@@ -95,10 +112,8 @@ const Root = () => {
           cartCounter,
           increaseCartCounter,
           products,
-          filterProductsByType,
           resetFilters,
-          filterProductsByMetal,
-          filterProductsByMineral,
+          filterProducts,
           filterProductsBySearchInput,
           isCartOpen,
           handleCartClose,
@@ -106,6 +121,9 @@ const Root = () => {
           addProductToCart,
           removeProductFromCart,
           cart,
+          categoryFilter,
+          setCategoryFilter,
+          removeFilterCategory,
         }}
       >
         <MainTemplate>
