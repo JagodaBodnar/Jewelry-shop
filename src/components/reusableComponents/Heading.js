@@ -1,7 +1,10 @@
 import styled, { css } from "styled-components";
 
 export const HeadingOne = styled.h1`
-  color: #103e52;
+  /* color: #103e52; */
+
+  color: ${({ theme }) => theme.darkMint};
+  font-size: ${({ theme }) => theme.fontSize.xl};
   ${({ cartheader }) =>
     cartheader &&
     css`
@@ -17,7 +20,7 @@ export const HeadingOne = styled.h1`
       text-transform: uppercase;
       font-weight: 600;
       margin-bottom: 20px;
-    `}
+    `};
 `;
 
 export const HeadingTwo = styled.h2`
@@ -42,7 +45,7 @@ export const HeadingTwo = styled.h2`
       text-transform: uppercase;
       letter-spacing: 1px;
       text-align: left;
-      color: #dbbe23;
+      color: ${({ theme }) => theme.white};
       font-family: "Scope One", serif;
     `}
     ${({ cartItemName }) =>
@@ -57,6 +60,7 @@ export const HeadingTwo = styled.h2`
         css`
           display: flex;
           justify-content: center;
+          align-items: center;
         `}
       ${({ bold }) =>
         bold &&

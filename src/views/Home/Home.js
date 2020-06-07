@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const StyledSliderWrapper = styled.div`
   width: 100%;
-  height: 60vh;
+  height: 80vh;
   margin: 0;
   padding-top: 10px;
 `;

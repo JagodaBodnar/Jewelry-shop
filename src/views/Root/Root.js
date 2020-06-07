@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "../Home/Home";
 import About from "../About/About";
@@ -15,23 +15,49 @@ const Root = () => {
 
   const [products, setProducts] = useState([...initialState]);
   const [isCartOpen, setCartOpen] = useState(false);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([...new Set([])]);
   const [categoryFilter, setCategoryFilter] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
+
+  const increaseItemCounter = (productName) => {
+    cart.forEach((item) => {
+      if (item.productName === productName) {
+        item.productQuantity = item.productQuantity + 1;
+      } else {
+      }
+    });
+    increaseCartCounter();
+  };
+  const decreaseItemCounter = (productName) => {
+    cart.forEach((item) => {
+      if (item.productName === productName && item.productQuantity > 1) {
+        item.productQuantity = item.productQuantity - 1;
+        decreaseCartCounter();
+      } else {
+      }
+    });
+  };
 
   const addProductToCart = (productName) => {
     const filteredProducts = products.filter(
       (product) => product.productName === productName
     );
-    setCart([...cart, ...filteredProducts]);
+    setCart([...new Set([...cart, ...filteredProducts])]);
   };
 
-  const removeProductFromCart = (productName) => {
+  const removeProductFromCart = (productName, productQuantity) => {
     const filteredProducts = cart.filter(
       (product) => product.productName !== productName
     );
-    decreaseCartCounter();
+    setCartCounter(cartCounter - productQuantity);
+    cart.forEach((item) => {
+      if (item.productName === productName) {
+        item.productQuantity = 1;
+      } else {
+      }
+    });
 
-    setCart([...filteredProducts]);
+    setCart([...new Set([...filteredProducts])]);
   };
 
   const handleCartClose = () => {
@@ -46,7 +72,10 @@ const Root = () => {
     setCartCounter(cartCounter + 1);
   };
   const decreaseCartCounter = () => {
-    setCartCounter(cartCounter - 1);
+    if (cartCounter > 0) {
+      setCartCounter(cartCounter - 1);
+    } else {
+    }
   };
   const filterProducts = (e) => {
     let filterAttribute = e.target.getAttribute("data-target");
@@ -105,6 +134,35 @@ const Root = () => {
   };
   const removeFilterCategory = (type) => {};
 
+  const handleDuplicateNamesOfProducts = (productName, productPrice) => {
+    if (cart.length !== 0) {
+      const copyOfCart = [...cart];
+
+      copyOfCart.forEach((item) => {
+        if (item.productName === productName) {
+          item.productQuantity = item.productQuantity + 1;
+        } else {
+        }
+      });
+
+      setCart([...new Set([...copyOfCart])]);
+    }
+  };
+
+  const handleCalculateCartTotals = () => {
+    let total = 0;
+
+    cart.forEach((item) => {
+      total = total + item.productPrice;
+    });
+
+    setCartTotal(total);
+  };
+
+  useEffect(() => {
+    handleCalculateCartTotals();
+  }, [cart]);
+
   return (
     <BrowserRouter>
       <RootContext.Provider
@@ -124,6 +182,9 @@ const Root = () => {
           categoryFilter,
           setCategoryFilter,
           removeFilterCategory,
+          handleDuplicateNamesOfProducts,
+          increaseItemCounter,
+          decreaseItemCounter,
         }}
       >
         <MainTemplate>

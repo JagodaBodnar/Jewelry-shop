@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -57,6 +57,16 @@ const StyledCartItemImage = styled.img`
   width: 100px;
   height: 100px;
 `;
+const StyledProductQuantity = styled.span`
+  background-color: #ececec;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Cart = () => {
   const classes = useStyles();
@@ -113,25 +123,37 @@ const Cart = () => {
                       />
                       <HeadingTwo cartItemName>{productName}</HeadingTwo>
                       <HeadingTwo bold cartItemQuantity>
-                        <Button quantity onClick={decreaseItemCounter}>
+                        <Button
+                          quantity
+                          onClick={() => {
+                            decreaseItemCounter(productName);
+                          }}
+                        >
                           <IoIosRemove />
                         </Button>
-                        <span>
+                        <StyledProductQuantity>
                           {productQuantity} {itemCounter}
-                        </span>
-                        <Button quantity onClick={increaseItemCounter}>
+                        </StyledProductQuantity>
+                        <Button
+                          quantity
+                          onClick={() => {
+                            increaseItemCounter(productName);
+                          }}
+                        >
                           <IoIosAdd />
                         </Button>
                       </HeadingTwo>
                       <HeadingTwo bold>{productPrice}$</HeadingTwo>
                       <Button
                         close
-                        onClick={() => removeProductFromCart(productName)}
+                        onClick={() =>
+                          removeProductFromCart(productName, productQuantity)
+                        }
                       >
                         <IoIosClose />
                       </Button>
                       <HeadingTwo bold>
-                        {itemCounter * productPrice}$
+                        {productQuantity * productPrice}$
                       </HeadingTwo>
                     </StyledCartItemElement>
                   </>

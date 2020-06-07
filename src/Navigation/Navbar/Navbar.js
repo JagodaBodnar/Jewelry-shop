@@ -5,7 +5,7 @@ import styled from "styled-components";
 import cartIcon from "../../assets/icons/shoppingCartSvg.svg";
 import Button from "../../components/reusableComponents/Button";
 import RootContext from "../../context/context";
-import Logo from "../../assets/images/ButterflyLogo.png";
+import { GiCutDiamond } from "react-icons/gi";
 
 const StyledNav = styled.nav`
   position: sticky;
@@ -39,7 +39,10 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   cursor: pointer;
   color: #828281;
-  background-image: linear-gradient(#ead065, #ead065);
+  background-image: linear-gradient(
+    ${({ theme }) => theme.pink},
+    ${({ theme }) => theme.pink}
+  );
   background-position: 0% 100%;
   background-repeat: no-repeat;
   background-size: 0% 1px;
@@ -47,7 +50,7 @@ const StyledLink = styled(Link)`
   &:hover,
   &:focus {
     background-size: 100% 1px;
-    color: #ead065;
+    color: ${({ theme }) => theme.pink};
   }
 `;
 
@@ -61,11 +64,8 @@ const StyledLogoContainer = styled.div`
   position: absolute;
   left: 45px;
   display: flex;
-  color: gold;
-`;
-const StyledLogo = styled.img`
-  width: 55px;
-  height: auto;
+  color: #ce3c72;
+  font-size: 52px;
 `;
 
 const Navbar = () => {
@@ -76,7 +76,7 @@ const Navbar = () => {
     <StyledNav>
       <StyledUl>
         <StyledLogoContainer>
-          <StyledLogo src={Logo} />
+          <GiCutDiamond />
         </StyledLogoContainer>
         <StyledLi>
           <StyledLink to={routes.home}>Home</StyledLink>

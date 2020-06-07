@@ -45,7 +45,7 @@ const StyledProductListElement = styled.div`
     transition: 0.5s;
     &:hover,
     &:hover + ${StyledTooltip} {
-      color: #efd377;
+      color: ${({ theme }) => theme.pink};
       opacity: 1;
     }
   }
@@ -57,7 +57,11 @@ const ProductsListElement = ({
   productDesc,
 }) => {
   const context = useContext(RootContext);
-  const { increaseCartCounter, addProductToCart } = context;
+  const {
+    increaseCartCounter,
+    addProductToCart,
+    handleDuplicateNamesOfProducts,
+  } = context;
 
   return (
     <StyledProductListElement>
@@ -77,8 +81,9 @@ const ProductsListElement = ({
       <StyledAddToCartButtonContainer>
         <Button
           onClick={() => {
-            increaseCartCounter();
+            handleDuplicateNamesOfProducts(productName, productPrice);
             addProductToCart(productName);
+            increaseCartCounter(productName);
           }}
         >
           <StyledAddToCart />
