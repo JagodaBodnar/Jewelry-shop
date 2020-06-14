@@ -3,5 +3,4 @@ export const routes = {
   about: "/about",
   products: "/products",
   contact: "/contact",
-  singleProduct: "/single_product",
 };

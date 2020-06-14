@@ -246,7 +246,7 @@ export const productsDataArray = [
     categories: ["Necklace", "Diamond", "White Gold"],
   },
   {
-    productName: "Black and White Swarovski Crystal Gold Necklace",
+    productName: "Black and White Swarovski Crystal Necklace",
     productPrice: 450,
     productDesc: "Excepteur sint occaecat cupidatat non proident.",
     productImage: BlackAndWhiteSwarovskiCrystalNecklace,

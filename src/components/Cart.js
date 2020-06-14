@@ -11,6 +11,7 @@ import {
 } from "../components/reusableComponents/Heading";
 import { IoIosClose, IoIosRemove, IoIosAdd } from "react-icons/io";
 import Button from "../components/reusableComponents/Button";
+import PaypalButton from "./PaypalButton";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -29,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     width: "45vw",
   },
 }));
+const StyledModalContainer = styled.div`
+  overflow-y: auto;
+`;
 
 const StyledCartWrapper = styled.div`
   position: absolute;
@@ -67,8 +71,20 @@ const StyledProductQuantity = styled.span`
   justify-content: center;
   align-items: center;
 `;
+const StyledTotalCart = styled.div`
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 5px;
+  margin-top: 30px;
+`;
+const StyledPayPal = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+`;
 
-const Cart = () => {
+const Cart = ({ history }) => {
   const classes = useStyles();
 
   const context = useContext(RootContext);
@@ -81,6 +97,8 @@ const Cart = () => {
     increaseItemCounter,
     decreaseItemCounter,
     itemCounter,
+    clearCart,
+    cartTotal,
   } = context;
 
   return (
@@ -98,7 +116,7 @@ const Cart = () => {
         }}
       >
         <Fade in={isCartOpen}>
-          <div className={classes.paper}>
+          <StyledModalContainer className={classes.paper}>
             <StyledCartHeader>
               <HeadingOne cartheader>Cart</HeadingOne>
               <HeadingOne cartitemheader>Quantity</HeadingOne>
@@ -160,7 +178,20 @@ const Cart = () => {
                 );
               })}
             </StyledCartItemList>
-          </div>
+            <StyledTotalCart>
+              <HeadingOne totalSum>TOTAL </HeadingOne>
+              <HeadingTwo totalSum bold>
+                {cartTotal}$
+              </HeadingTwo>
+            </StyledTotalCart>
+            <StyledPayPal>
+              <PaypalButton
+                history={history}
+                clearCart={clearCart}
+                cartTotal={cartTotal}
+              />
+            </StyledPayPal>
+          </StyledModalContainer>
         </Fade>
       </Modal>
     </StyledCartWrapper>

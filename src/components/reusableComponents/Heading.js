@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const HeadingOne = styled.h1`
   /* color: #103e52; */
 
-  color: ${({ theme }) => theme.darkMint};
+  color: ${({ theme }) => theme.indigo};
   font-size: ${({ theme }) => theme.fontSize.xl};
   ${({ cartheader }) =>
     cartheader &&
@@ -21,6 +21,21 @@ export const HeadingOne = styled.h1`
       font-weight: 600;
       margin-bottom: 20px;
     `};
+  ${({ totalSum }) =>
+    totalSum &&
+    css`
+      text-align: right;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-right: 20px;
+      grid-column: span 7;
+    `};
+  ${({ singleProductHeader }) =>
+    singleProductHeader &&
+    css`
+      color: ${({ theme }) => theme.indigo};
+    `}
 `;
 
 export const HeadingTwo = styled.h2`
@@ -67,4 +82,11 @@ export const HeadingTwo = styled.h2`
         css`
           font-weight: bold;
         `}
+        ${({ totalSum }) =>
+          totalSum &&
+          css`
+            grid-column: span 1;
+            text-align: center;
+            font-size: 16px;
+          `}
 `;

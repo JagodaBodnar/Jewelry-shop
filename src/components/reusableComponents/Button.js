@@ -29,12 +29,11 @@ const Button = styled.button`
       border-radius: 4px;
       width: 150px;
       margin-left: 20px;
-      color: ${({ theme }) => theme.darkMint};
+      color: ${({ theme }) => theme.indigo};
       font-weight: 400;
       text-transform: uppercase;
-      border: 2px solid ${({ theme }) => theme.darkMint};
+      border: 2px solid ${({ theme }) => theme.indigo};
       font-weight: bold;
-      /*background-color: #103e52;*/
       letter-spacing: 1px;
       height: 35px;
       &:hover {
@@ -84,6 +83,45 @@ const Button = styled.button`
             flex-direction: column;
             justify-content: center;
           `}
+          ${({ addToWishlist }) =>
+            addToWishlist &&
+            css`
+              border: 1px solid ${({ theme }) => theme.grey};
+              border-radius: 2px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 45px;
+              height: 45px;
+              margin-right: 10px;
+              &:hover {
+                border: 1px solid ${({ theme }) => theme.pink};
+                > :first-child {
+                  color: ${({ theme }) => theme.pink};
+                }
+              }
+            `}
+            ${({ addToCart }) =>
+              addToCart &&
+              css`
+                border: 1px solid ${({ theme }) => theme.grey};
+                border-radius: 0;
+                padding: 5px;
+                width: 200px;
+                color: ${({ theme }) => theme.grey};
+                border-radius: 2px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-transform: uppercase;
+                font-size: 18px;
+                font-weight: 500;
+                font-family: "Verdana";
+                &:hover {
+                  border: 1px solid ${({ theme }) => theme.pink};
+                  color: ${({ theme }) => theme.pink};
+                }
+              `}
 `;
 
 export default Button;

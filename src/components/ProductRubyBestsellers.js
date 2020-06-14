@@ -1,17 +1,16 @@
 import React, { useContext } from "react";
 import RootContext from "../context/context";
-import ProductsListElement from "./ProductsListElement";
+import ProductBestsellerElement from "./ProductBestsellerElement";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const StyledProductList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 5px;
   margin: 10px;
   list-style: none;
   background-color: #ffffff;
-  width: 60vw;
   margin: 0 auto;
 `;
 
@@ -32,14 +31,13 @@ const StyledProductItem = styled.li`
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
-
-const ProductsList = () => {
+const ProductRubyBestseller = () => {
   const context = useContext(RootContext);
-  const { products } = context;
+  const { ruby } = context;
 
   return (
     <StyledProductList>
-      {products.map((product) => {
+      {ruby.map((product) => {
         const {
           productName,
           productPrice,
@@ -48,26 +46,26 @@ const ProductsList = () => {
           productDesc,
         } = product;
         return (
-          <StyledProductItem key={productName}>
-            <StyledLink
-              to={{
-                pathname: `/products/${productName}`,
-                state: {
-                  productName,
-                  productPrice,
-                  productImage,
-                  productQuantity,
-                  productDesc,
-                },
-              }}
-            >
-              <ProductsListElement {...product} />
-            </StyledLink>
-          </StyledProductItem>
+          <StyledLink
+            to={{
+              pathname: `/products/${productName}`,
+              state: {
+                productName,
+                productPrice,
+                productImage,
+                productQuantity,
+                productDesc,
+              },
+            }}
+          >
+            <StyledProductItem key={productName}>
+              <ProductBestsellerElement {...product} />
+            </StyledProductItem>
+          </StyledLink>
         );
       })}
     </StyledProductList>
   );
 };
 
-export default ProductsList;
+export default ProductRubyBestseller;

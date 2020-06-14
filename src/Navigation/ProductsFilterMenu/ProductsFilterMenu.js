@@ -162,16 +162,16 @@ const ProductsFilterMenu = ({ isProductMenuVisible }) => {
             {categoryFilter.map((item) => {
               return (
                 <>
-                  <StyledSelectedCategoryElement>
-                    <StyledCategoryItem selectedCategory>
+                  <StyledSelectedCategoryElement data-target={item}>
+                    <StyledCategoryItem selectedCategory data-target={item}>
                       {item}
                     </StyledCategoryItem>
                     <Button
-                      data-target={item}
                       close
+                      data-target={item}
                       onClick={removeFilterCategory}
                     >
-                      <IoIosClose />
+                      <IoIosClose data-target={item} />
                     </Button>
                   </StyledSelectedCategoryElement>
                 </>

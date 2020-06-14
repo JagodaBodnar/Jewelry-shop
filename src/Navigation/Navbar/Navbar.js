@@ -83,12 +83,13 @@ const Navbar = () => {
         </StyledLi>
 
         <StyledLi>
-          <StyledLink to={routes.about}>About</StyledLink>
+          <StyledLink to={routes.products}>Products</StyledLink>
         </StyledLi>
 
         <StyledLi>
-          <StyledLink to={routes.products}>Products</StyledLink>
+          <StyledLink to={routes.about}>Contact</StyledLink>
         </StyledLi>
+
         <StyledLi>
           <Button cartIcon={cartIcon} onClick={handleCartOpen}>
             <StyledSpan>{cartCounter}</StyledSpan>

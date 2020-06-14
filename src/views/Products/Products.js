@@ -3,9 +3,9 @@ import RootContext from "../../context/context";
 import ProductsList from "../../components/ProductsList";
 import ProductsFilterMenu from "../../Navigation/ProductsFilterMenu/ProductsFilterMenu";
 import Button from "../../components/reusableComponents/Button";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { HeadingOne } from "../../components/reusableComponents/Heading";
-import { useSpring, animated, config } from "react-spring";
+import { useSpring, animated } from "react-spring";
 
 const StyledProductCategoriesContainer = styled.div`
   position: sticky;

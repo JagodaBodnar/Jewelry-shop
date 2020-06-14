@@ -51,7 +51,7 @@ const StyledProductListElement = styled.div`
     }
   }
 `;
-const ProductsListElement = ({
+const ProductsBestsellerElement = ({
   productName,
   productPrice,
   productImage,
@@ -69,7 +69,7 @@ const ProductsListElement = ({
       <StyledWishlistButtonContainer>
         <Link
           to={{
-            pathname: `/products`,
+            pathname: `/`,
           }}
         >
           <Button>
@@ -88,7 +88,7 @@ const ProductsListElement = ({
       <StyledAddToCartButtonContainer>
         <Link
           to={{
-            pathname: `/products`,
+            pathname: `/`,
           }}
         >
           <Button
@@ -106,4 +106,4 @@ const ProductsListElement = ({
   );
 };
 
-export default ProductsListElement;
+export default ProductsBestsellerElement;

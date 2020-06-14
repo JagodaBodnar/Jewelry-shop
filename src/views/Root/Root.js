@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "../Home/Home";
-import About from "../About/About";
+import Contact from "../Contact/Contact";
 import Products from "../Products/Products";
+import SingleProduct from "../SingleProduct/SingleProduct";
 import { routes } from "../../routes";
 import MainTemplate from "../../templates/MainTemplate";
 import RootContext from "../../context/context";
@@ -17,7 +18,24 @@ const Root = () => {
   const [isCartOpen, setCartOpen] = useState(false);
   const [cart, setCart] = useState([...new Set([])]);
   const [categoryFilter, setCategoryFilter] = useState([]);
-  const [cartTotal, setCartTotal] = useState(0);
+  const [cartTotal, setCartTotal] = useState(10);
+  const [selected, setSelected] = useState([...categoryFilter]);
+  const [bestsellers, setBestsellers] = useState([
+    productsDataArray[0],
+    productsDataArray[20],
+  ]);
+  const [emerald, setEmerald] = useState([
+    productsDataArray[12],
+    productsDataArray[43],
+  ]);
+  const [ruby, setRuby] = useState([
+    productsDataArray[45],
+    productsDataArray[47],
+  ]);
+
+  const clearCart = () => {
+    setCart([...new Set([])]);
+  };
 
   const increaseItemCounter = (productName) => {
     cart.forEach((item) => {
@@ -37,7 +55,6 @@ const Root = () => {
       }
     });
   };
-
   const addProductToCart = (productName) => {
     const filteredProducts = products.filter(
       (product) => product.productName === productName
@@ -85,8 +102,42 @@ const Root = () => {
     setProducts([...filteredProducts]);
     const filterCategory = categoryFilter.concat(filterAttribute);
     setCategoryFilter([...filterCategory]);
+    setSelected([...filterCategory]);
   };
 
+  const removeFilterCategory = (e) => {
+    let filterAttribute = e.target.getAttribute("data-target");
+    // console.log(categoryFilter);
+    // const filterCategory = categoryFilter.concat(filterAttribute);
+
+    // if (filterCategory.length !== 0) {
+    //   setSelectedCategories([...filterCategory]);
+    //   console.log(selectedCategories);
+    // }
+
+    // console.log(selected);
+    const categoryToRemove = selected.filter((category) => {
+      console.log(category);
+      // console.log(filterAttribute);
+      if (category === filterAttribute) {
+        return selected.filter(
+          (remainCategories) => remainCategories !== category
+        );
+      }
+      console.log(selected);
+    });
+
+    // console.log(categoryToRemove);
+    setSelected([...categoryToRemove]);
+    setProducts([...initialState]);
+
+    console.log(selected);
+    const removedFilter = products.filter((item) => {
+      return selected.indexOf(item.categories !== -1);
+    });
+    console.log(removedFilter);
+    //setProducts([...removedFilter]);
+  };
   // const filterProductsByMetal = (e) => {
   //   let filterAttribute = e.target.getAttribute("data-target");
   //   const filteredProducts = products.filter(
@@ -132,9 +183,8 @@ const Root = () => {
     setProducts([...initialState]);
     setCategoryFilter([]);
   };
-  const removeFilterCategory = (type) => {};
 
-  const handleDuplicateNamesOfProducts = (productName, productPrice) => {
+  const handleDuplicateNamesOfProducts = (productName) => {
     if (cart.length !== 0) {
       const copyOfCart = [...cart];
 
@@ -153,7 +203,7 @@ const Root = () => {
     let total = 0;
 
     cart.forEach((item) => {
-      total = total + item.productPrice;
+      total = total + item.productQuantity * item.productPrice;
     });
 
     setCartTotal(total);
@@ -161,7 +211,7 @@ const Root = () => {
 
   useEffect(() => {
     handleCalculateCartTotals();
-  }, [cart]);
+  }, [cart, cartCounter]);
 
   return (
     <BrowserRouter>
@@ -185,13 +235,19 @@ const Root = () => {
           handleDuplicateNamesOfProducts,
           increaseItemCounter,
           decreaseItemCounter,
+          bestsellers,
+          emerald,
+          ruby,
+          clearCart,
+          cartTotal,
         }}
       >
         <MainTemplate>
           <Switch>
             <Route exact path={routes.home} component={Home} />
-            <Route path={routes.about} component={About} />
-            <Route path={routes.products} component={Products} />
+            <Route exact path={routes.products} component={Products} />
+            <Route path={routes.contact} component={Contact} />
+            <Route path="/products/:name" component={SingleProduct} />
           </Switch>
         </MainTemplate>
       </RootContext.Provider>
