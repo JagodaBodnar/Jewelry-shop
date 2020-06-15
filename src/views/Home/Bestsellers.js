@@ -16,7 +16,7 @@ const StyledContainer = styled.div`
   margin-top: 2px;
 `;
 const StyledSections = styled.section`
-  margin-top: 30px;
+  margin-top: 80px;
 `;
 const StyledCategoryImg = styled.img`
   box-sizing: border-box;

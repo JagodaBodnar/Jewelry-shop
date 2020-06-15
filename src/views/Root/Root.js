@@ -15,6 +15,7 @@ const Root = () => {
   const [cartCounter, setCartCounter] = useState(0);
 
   const [products, setProducts] = useState([...initialState]);
+  const [productsToFilter, setProductsToFilter] = useState([...initialState]);
   const [isCartOpen, setCartOpen] = useState(false);
   const [cart, setCart] = useState([...new Set([])]);
   const [categoryFilter, setCategoryFilter] = useState([]);
@@ -102,11 +103,12 @@ const Root = () => {
     setProducts([...filteredProducts]);
     const filterCategory = categoryFilter.concat(filterAttribute);
     setCategoryFilter([...filterCategory]);
-    setSelected([...filterCategory]);
+    // setSelected([...filterCategory]);
   };
 
   const removeFilterCategory = (e) => {
     let filterAttribute = e.target.getAttribute("data-target");
+<<<<<<< HEAD
     // console.log(categoryFilter);
     // const filterCategory = categoryFilter.concat(filterAttribute);
 
@@ -138,6 +140,24 @@ const Root = () => {
     console.log(removedFilter);
     //setProducts([...removedFilter]);
   };
+=======
+    console.log(categoryFilter);
+
+    const categoryRemained = categoryFilter.map((category) => {
+      if (category === filterAttribute) {
+        const indexOfCategory = categoryFilter.indexOf(category);
+        const newArray = categoryFilter.splice(indexOfCategory, 1);
+        return newArray;
+      }
+    });
+    const filteredProducts = productsToFilter.filter((product) =>
+      product.categories.includes(categoryRemained)
+    );
+    setProductsToFilter([...filteredProducts]);
+    setProducts([...productsToFilter]);
+  };
+
+>>>>>>> 89e3aa0... removing filters update
   // const filterProductsByMetal = (e) => {
   //   let filterAttribute = e.target.getAttribute("data-target");
   //   const filteredProducts = products.filter(
@@ -235,6 +255,7 @@ const Root = () => {
           handleDuplicateNamesOfProducts,
           increaseItemCounter,
           decreaseItemCounter,
+          removeFilterCategory,
           bestsellers,
           emerald,
           ruby,
