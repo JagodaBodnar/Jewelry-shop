@@ -99,6 +99,7 @@ const Cart = ({ history }) => {
     itemCounter,
     clearCart,
     cartTotal,
+    clearCartCounter,
   } = context;
 
   return (
@@ -189,6 +190,8 @@ const Cart = ({ history }) => {
                 history={history}
                 clearCart={clearCart}
                 cartTotal={cartTotal}
+                handleCartClose={handleCartClose}
+                clearCartCounter={clearCartCounter}
               />
             </StyledPayPal>
           </StyledModalContainer>

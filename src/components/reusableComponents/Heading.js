@@ -89,4 +89,17 @@ export const HeadingTwo = styled.h2`
             text-align: center;
             font-size: 16px;
           `}
+          ${({ termsAndConditions }) =>
+            termsAndConditions &&
+            css`
+              margin-bottom: 0;
+            `}
+            ${({ help }) =>
+              help &&
+              css`
+                font-weight: 600;
+                font-size: 16px;
+                font-family: "Scope One", serif;
+                color: ${({ theme }) => theme.pink};
+              `}
 `;

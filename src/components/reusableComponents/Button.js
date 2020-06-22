@@ -23,8 +23,8 @@ const Button = styled.button`
       width: 50px;
       height: 50px;
     `}
-  ${({ filter }) =>
-    filter &&
+  ${({ isfilter }) =>
+    isfilter &&
     css`
       border-radius: 4px;
       width: 150px;
@@ -122,6 +122,21 @@ const Button = styled.button`
                   color: ${({ theme }) => theme.pink};
                 }
               `}
+              ${({ send }) =>
+                send &&
+                css`
+                  border-radius: 4px;
+                  width: 80px;
+                  color: ${({ theme }) => theme.indigo};
+                  font-weight: 400;
+                  text-transform: uppercase;
+                  border: 2px solid ${({ theme }) => theme.indigo};
+                  font-weight: bold;
+                  letter-spacing: 1px;
+                  height: 28px;
+                  &:hover {
+                  }
+                `}
 `;
 
 export default Button;

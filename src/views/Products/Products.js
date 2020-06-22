@@ -13,7 +13,6 @@ const StyledProductCategoriesContainer = styled.div`
   z-index: 100;
   top: 8vh;
   width: 100%;
-  min-height: 8vh;
   background-color: #fff;
   margin: 20px 0;
 `;
@@ -22,7 +21,7 @@ const StyledProductNavContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 60vw;
-  margin: 20px auto;
+  margin: 100px auto 5px auto;
 `;
 
 const Products = () => {
@@ -46,7 +45,7 @@ const Products = () => {
         <StyledProductNavContainer>
           <HeadingOne>Products</HeadingOne>
           <Button
-            filter
+            isfilter
             onClick={() => {
               setProductMenuVisiblity(!isProductMenuVisible);
             }}

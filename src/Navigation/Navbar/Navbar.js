@@ -8,15 +8,13 @@ import RootContext from "../../context/context";
 import { GiCutDiamond } from "react-icons/gi";
 
 const StyledNav = styled.nav`
-  position: sticky;
-  position: -webkit-sticky;
+  position: fixed;
   z-index: 101;
   top: 0;
   width: 100%;
   min-height: 8vh;
   background-color: #fff;
   border-bottom: solid 1px #ececec;
-  /*background-image: linear-gradient(15deg, #f1f1f1 0%, #fff 100%);*/
 `;
 
 const StyledUl = styled.ul`
@@ -87,7 +85,7 @@ const Navbar = () => {
         </StyledLi>
 
         <StyledLi>
-          <StyledLink to={routes.about}>Contact</StyledLink>
+          <StyledLink to={routes.contact}>Contact</StyledLink>
         </StyledLi>
 
         <StyledLi>

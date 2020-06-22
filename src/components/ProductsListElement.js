@@ -51,11 +51,15 @@ const StyledProductListElement = styled.div`
     }
   }
 `;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 const ProductsListElement = ({
   productName,
   productPrice,
   productImage,
   productDesc,
+  productQuantity,
 }) => {
   const context = useContext(RootContext);
   const {
@@ -67,40 +71,40 @@ const ProductsListElement = ({
   return (
     <StyledProductListElement>
       <StyledWishlistButtonContainer>
-        <Link
-          to={{
-            pathname: `/products`,
-          }}
-        >
-          <Button>
-            <StyledAddToWishlist />
-            <StyledTooltip>Add to wishlist</StyledTooltip>
-          </Button>
-        </Link>
+        <Button>
+          <StyledAddToWishlist />
+          <StyledTooltip>Add to wishlist</StyledTooltip>
+        </Button>
       </StyledWishlistButtonContainer>
-
-      <StyledProductImage src={productImage} alt="product foto" />
-      <HeadingTwo>{productName}</HeadingTwo>
-      <HeadingTwo price>
-        {productPrice} <span>$</span>
-      </HeadingTwo>
+      <StyledLink
+        to={{
+          pathname: `/products/${productName}`,
+          state: {
+            productName,
+            productPrice,
+            productImage,
+            productQuantity,
+            productDesc,
+          },
+        }}
+      >
+        <StyledProductImage src={productImage} alt="product foto" />
+        <HeadingTwo>{productName}</HeadingTwo>
+        <HeadingTwo price>
+          {productPrice} <span>$</span>
+        </HeadingTwo>
+      </StyledLink>
 
       <StyledAddToCartButtonContainer>
-        <Link
-          to={{
-            pathname: `/products`,
+        <Button
+          onClick={() => {
+            handleDuplicateNamesOfProducts(productName, productPrice);
+            addProductToCart(productName);
+            increaseCartCounter(productName);
           }}
         >
-          <Button
-            onClick={() => {
-              handleDuplicateNamesOfProducts(productName, productPrice);
-              addProductToCart(productName);
-              increaseCartCounter(productName);
-            }}
-          >
-            <StyledAddToCart />
-          </Button>
-        </Link>
+          <StyledAddToCart />
+        </Button>
       </StyledAddToCartButtonContainer>
     </StyledProductListElement>
   );

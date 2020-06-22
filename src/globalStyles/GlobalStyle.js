@@ -11,11 +11,11 @@ const GlobalStyle = createGlobalStyle`
 /* html{
     font-size: 62.5%
 } */
-/* 
+
 body{
-    width: 90%;
-    margin: auto;
-} */
+    min-height: 92vh;
+    margin-top: 8vh;
+} 
 
 `;
 

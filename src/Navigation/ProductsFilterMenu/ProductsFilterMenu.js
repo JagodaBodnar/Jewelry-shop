@@ -101,6 +101,8 @@ const ProductsFilterMenu = ({ isProductMenuVisible }) => {
     filterProductsBySearchInput,
     categoryFilter,
     removeFilterCategory,
+    chosenCategory,
+    setNewFilter,
   } = context;
 
   return (
@@ -162,8 +164,8 @@ const ProductsFilterMenu = ({ isProductMenuVisible }) => {
             {categoryFilter.map((item) => {
               return (
                 <>
-                  <StyledSelectedCategoryElement data-target={item}>
-                    <StyledCategoryItem selectedCategory data-target={item}>
+                  <StyledSelectedCategoryElement>
+                    <StyledCategoryItem selectedCategory>
                       {item}
                     </StyledCategoryItem>
                     <Button
@@ -171,7 +173,7 @@ const ProductsFilterMenu = ({ isProductMenuVisible }) => {
                       data-target={item}
                       onClick={removeFilterCategory}
                     >
-                      <IoIosClose data-target={item} />
+                      X
                     </Button>
                   </StyledSelectedCategoryElement>
                 </>

@@ -28,9 +28,7 @@ const StyledProductItem = styled.li`
     border-bottom: none;
   }
 `;
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;
+
 const ProductBestsellers = () => {
   const context = useContext(RootContext);
   const { bestsellers } = context;
@@ -38,30 +36,10 @@ const ProductBestsellers = () => {
   return (
     <StyledProductList>
       {bestsellers.map((product) => {
-        const {
-          productName,
-          productPrice,
-          productImage,
-          productQuantity,
-          productDesc,
-        } = product;
         return (
-          <StyledLink
-            to={{
-              pathname: `/products/${productName}`,
-              state: {
-                productName,
-                productPrice,
-                productImage,
-                productQuantity,
-                productDesc,
-              },
-            }}
-          >
-            <StyledProductItem key={productName}>
-              <ProductBestsellerElement {...product} />
-            </StyledProductItem>
-          </StyledLink>
+          <StyledProductItem key={product.productName}>
+            <ProductBestsellerElement {...product} />
+          </StyledProductItem>
         );
       })}
     </StyledProductList>

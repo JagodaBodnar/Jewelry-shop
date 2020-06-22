@@ -51,11 +51,15 @@ const StyledProductListElement = styled.div`
     }
   }
 `;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 const ProductsBestsellerElement = ({
   productName,
   productPrice,
   productImage,
   productDesc,
+  productQuantity,
 }) => {
   const context = useContext(RootContext);
   const {
@@ -78,12 +82,24 @@ const ProductsBestsellerElement = ({
           </Button>
         </Link>
       </StyledWishlistButtonContainer>
-
-      <StyledProductImage src={productImage} alt="product foto" />
-      <HeadingTwo>{productName}</HeadingTwo>
-      <HeadingTwo price>
-        {productPrice} <span>$</span>
-      </HeadingTwo>
+      <StyledLink
+        to={{
+          pathname: `/products/${productName}`,
+          state: {
+            productName,
+            productPrice,
+            productImage,
+            productQuantity,
+            productDesc,
+          },
+        }}
+      >
+        <StyledProductImage src={productImage} alt="product foto" />
+        <HeadingTwo>{productName}</HeadingTwo>
+        <HeadingTwo price>
+          {productPrice} <span>$</span>
+        </HeadingTwo>
+      </StyledLink>
 
       <StyledAddToCartButtonContainer>
         <Link

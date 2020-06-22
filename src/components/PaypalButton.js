@@ -3,14 +3,20 @@ import PaypalExpressBtn from "react-paypal-express-checkout";
 
 class PaypalButton extends Component {
   render() {
-    const { clearCart, history, cartTotal } = this.props;
+    const {
+      clearCart,
+      history,
+      cartTotal,
+      handleCartClose,
+      clearCartCounter,
+    } = this.props;
 
     const onSuccess = (payment) => {
       console.log("Payment was succeeded!", payment);
 
       clearCart();
-
-      history.push("/");
+      handleCartClose();
+      clearCartCounter();
     };
 
     const onCancel = (data) => {
