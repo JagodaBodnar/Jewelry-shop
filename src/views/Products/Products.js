@@ -23,6 +23,16 @@ const StyledProductNavContainer = styled.div`
   width: 60vw;
   margin: 100px auto 5px auto;
 `;
+const StyledNoProductsFound = styled.div`
+  text-align: center;
+  width: 50%;
+  margin: 50px auto;
+  font-family: "Scope One", serif;
+  color: #828281;
+  font-size: 16px;
+  font-weight: 200;
+  text-align: center;
+`;
 
 const Products = () => {
   const context = useContext(RootContext);
@@ -59,6 +69,11 @@ const Products = () => {
       </StyledProductCategoriesContainer>
 
       <ProductsList />
+      <StyledNoProductsFound>
+        {context.products.length === 0
+          ? `No products were found matching your selection.`
+          : ""}
+      </StyledNoProductsFound>
     </>
   );
 };

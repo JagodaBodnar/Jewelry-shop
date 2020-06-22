@@ -38,9 +38,11 @@ const ProductsList = () => {
     <StyledProductList>
       {products.map((product) => {
         return (
-          <StyledProductItem key={product.productName}>
-            <ProductsListElement {...product} />
-          </StyledProductItem>
+          <>
+            <StyledProductItem key={product.productName}>
+              <ProductsListElement {...product} />
+            </StyledProductItem>
+          </>
         );
       })}
     </StyledProductList>

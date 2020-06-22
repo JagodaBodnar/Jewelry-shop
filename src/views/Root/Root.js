@@ -342,12 +342,15 @@ const Root = () => {
           handleChange,
           isChecked,
           filterToRemove,
+<<<<<<< HEAD
           addProductToWishlist,
           removeProductFromWishlist,
           handleWishlist,
           wishlist,
           openWishlistPopUp,
           openPopUp,
+=======
+>>>>>>> 2f9efcf...  filter final version
         }}
       >
         <MainTemplate>

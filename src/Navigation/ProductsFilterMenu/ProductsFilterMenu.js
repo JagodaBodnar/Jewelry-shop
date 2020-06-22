@@ -103,6 +103,7 @@ const ProductsFilterMenu = ({ isProductMenuVisible }) => {
     removeFilterCategory,
     chosenCategory,
     setNewFilter,
+    filterToRemove,
   } = context;
 
   return (
@@ -161,13 +162,14 @@ const ProductsFilterMenu = ({ isProductMenuVisible }) => {
             Reset Filters
           </Button>
           <StyledSelectedCategoryContainer>
-            {categoryFilter.map((item) => {
+            {filterToRemove.map((item) => {
               return (
                 <>
                   <StyledSelectedCategoryElement>
                     <StyledCategoryItem selectedCategory>
                       {item}
                     </StyledCategoryItem>
+
                     <Button
                       close
                       data-target={item}
