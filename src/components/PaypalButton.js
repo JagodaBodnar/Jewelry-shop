@@ -5,7 +5,6 @@ class PaypalButton extends Component {
   render() {
     const {
       clearCart,
-      history,
       cartTotal,
       handleCartClose,
       clearCartCounter,

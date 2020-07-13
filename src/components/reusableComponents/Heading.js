@@ -1,7 +1,9 @@
 import styled, { css } from "styled-components";
+import { device } from "../../globalStyles/Device";
 
 export const HeadingOne = styled.h1`
   /* color: #103e52; */
+  text-align: center;
 
   color: ${({ theme }) => theme.indigo};
   font-size: ${({ theme }) => theme.fontSize.xl};
@@ -11,6 +13,7 @@ export const HeadingOne = styled.h1`
       grid-column: span 4;
       text-transform: uppercase;
       margin-bottom: 20px;
+      text-align: left;
     `}
   ${({ cartitemheader }) =>
     cartitemheader &&
@@ -35,6 +38,15 @@ export const HeadingOne = styled.h1`
     singleProductHeader &&
     css`
       color: ${({ theme }) => theme.indigo};
+      @media ${device.mobileS} {
+        font-size: 27px;
+      }
+      @media ${device.mobile} {
+        font-size: 27px;
+      }
+      @media ${device.tablet} {
+        font-size: 35px;
+      }
     `}
 `;
 
@@ -44,7 +56,9 @@ export const HeadingTwo = styled.h2`
   font-size: 14px;
   font-weight: 200;
   text-align: center;
-  margin-bottom: 5px;
+  margin: 5px auto;
+  max-height: 50px;
+  max-width: 60%;
   ${({ price }) =>
     price &&
     css`
@@ -68,7 +82,17 @@ export const HeadingTwo = styled.h2`
       css`
         grid-column: span 3;
         text-align: center;
-        font-size: 16px;
+        max-width: 100%;
+        margin: 0;
+        @media ${device.mobileS} {
+          font-size: 12px;
+        }
+        @media ${device.mobile} {
+          font-size: 12px;
+        }
+        @media ${device.laptop} {
+          font-size: 16px;
+        }
       `}
       ${({ cartItemQuantity }) =>
         cartItemQuantity &&
@@ -76,6 +100,8 @@ export const HeadingTwo = styled.h2`
           display: flex;
           justify-content: center;
           align-items: center;
+          max-width: 100%;
+          margin: 0;
         `}
       ${({ bold }) =>
         bold &&

@@ -2,16 +2,21 @@ import React, { useContext } from "react";
 import RootContext from "../context/context";
 import ProductBestsellerElement from "./ProductBestsellerElement";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { device } from "../globalStyles/Device";
 
 const StyledProductList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   grid-gap: 5px;
   margin: 10px;
   list-style: none;
   background-color: #ffffff;
   margin: 0 auto;
+  @media ${device.laptop} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media ${device.mobileS} {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const StyledProductItem = styled.li`

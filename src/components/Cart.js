@@ -12,6 +12,7 @@ import {
 import { IoIosClose, IoIosRemove, IoIosAdd } from "react-icons/io";
 import Button from "../components/reusableComponents/Button";
 import PaypalButton from "./PaypalButton";
+import { device } from "../globalStyles/Device";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -26,11 +27,33 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
     outline: "none",
     borderRadius: "10px",
-    height: "90vh",
-    width: "45vw",
+    "@media(max-width: 576px)": {
+      height: "50vh",
+    },
+    "@media(min-width: 576px)": {
+      height: "70vh",
+    },
+    "@media(min-width: 992px)": {
+      height: "90vh",
+    },
+    "@media(min-width: 576px)": {
+      width: "100vw",
+    },
+    "@media(min-width: 1200px)": {
+      width: "65vw",
+    },
   },
 }));
 const StyledModalContainer = styled.div`
+  @media ${device.mobileS} {
+    height: 70vh;
+  }
+  @media ${device.mobile} {
+    height: 70vh;
+  }
+  @media ${device.laptop} {
+    height: 90vh;
+  }
   overflow-y: auto;
 `;
 
@@ -60,6 +83,10 @@ const StyledCartItemElement = styled.li`
 const StyledCartItemImage = styled.img`
   width: 100px;
   height: 100px;
+  @media ${device.mobileS} {
+    width: 50px;
+    height: 50px;
+  }
 `;
 const StyledProductQuantity = styled.span`
   background-color: #ececec;
@@ -131,15 +158,12 @@ const Cart = ({ history }) => {
                   productName,
                   productPrice,
                   productQuantity,
-                  productImage,
+                  image,
                 } = item;
                 return (
                   <>
                     <StyledCartItemElement key={productName}>
-                      <StyledCartItemImage
-                        src={productImage}
-                        alt="product foto"
-                      />
+                      <StyledCartItemImage src={image} alt="product foto" />
                       <HeadingTwo cartItemName>{productName}</HeadingTwo>
                       <HeadingTwo bold cartItemQuantity>
                         <Button

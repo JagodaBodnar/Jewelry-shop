@@ -4,6 +4,7 @@ import Cart from "../components/Cart";
 import { ThemeProvider } from "styled-components";
 import { mainGlobalStyles } from "../globalStyles/mainGlobalStyles";
 import GlobalStyle from "../globalStyles/GlobalStyle";
+import Footer from "../Navigation/Footer/Footer";
 
 const MainTemplate = ({ children }) => {
   return (
@@ -13,7 +14,8 @@ const MainTemplate = ({ children }) => {
         <>
           <Navbar />
           <Cart />
-          {children}
+          <div>{children}</div>
+          <Footer />
         </>
       </ThemeProvider>
     </>

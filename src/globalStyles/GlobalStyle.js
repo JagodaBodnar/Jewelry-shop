@@ -12,10 +12,9 @@ const GlobalStyle = createGlobalStyle`
     font-size: 62.5%
 } */
 
-body{
-    min-height: 92vh;
-    margin-top: 8vh;
-} 
+/* body{
+    min-height: 100vh;
+}  */
 
 `;
 

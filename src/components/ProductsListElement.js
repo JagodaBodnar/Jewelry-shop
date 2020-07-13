@@ -5,6 +5,7 @@ import { HeadingTwo } from "./reusableComponents/Heading.js";
 import Button from "./reusableComponents/Button.js";
 import { FaShoppingBag, FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { device } from "../globalStyles/Device";
 
 const StyledWishlistButtonContainer = styled.div`
   display: flex;
@@ -23,6 +24,10 @@ const StyledAddToWishlist = styled(FaHeart)`
   font-size: 18px;
   color: transparent;
 `;
+const StyledIsOnWishlist = styled(FaHeart)`
+  font-size: 18px;
+  color: #ce3c72;
+`;
 const StyledAddToCartButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -34,8 +39,19 @@ const StyledAddToCart = styled(FaShoppingBag)`
 `;
 
 const StyledProductImage = styled.img`
-  width: 285px;
-  height: 275px;
+  @media ${device.mobile} {
+    width: 235px;
+    height: 225px;
+  }
+  @media ${device.mobileS} {
+    width: 235px;
+    height: 225px;
+  }
+  @media ${device.desktop} {
+    width: 285px;
+    height: 275px;
+  }
+
   padding: 15px;
 `;
 
@@ -54,41 +70,60 @@ const StyledProductListElement = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
+const StyledImgContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const ProductsListElement = ({
   productName,
   productPrice,
-  productImage,
+  image,
   productDesc,
   productQuantity,
+  wishList,
 }) => {
   const context = useContext(RootContext);
   const {
     increaseCartCounter,
     addProductToCart,
     handleDuplicateNamesOfProducts,
+    addProductToWishlist,
+    handleWishlist,
+    openWishlistPopUp,
   } = context;
 
   return (
-    <StyledProductListElement>
+    <StyledProductListElement key={productName}>
       <StyledWishlistButtonContainer>
-        <Button>
-          <StyledAddToWishlist />
+        <Button
+          onClick={() => {
+            addProductToWishlist(productName);
+            handleWishlist(productName);
+            openWishlistPopUp();
+          }}
+        >
+          {wishList === true ? <StyledIsOnWishlist /> : <StyledAddToWishlist />}
           <StyledTooltip>Add to wishlist</StyledTooltip>
         </Button>
       </StyledWishlistButtonContainer>
+
       <StyledLink
         to={{
           pathname: `/products/${productName}`,
           state: {
             productName,
             productPrice,
-            productImage,
+            image,
             productQuantity,
             productDesc,
+            wishList,
           },
         }}
       >
-        <StyledProductImage src={productImage} alt="product foto" />
+        <StyledImgContainer>
+          <StyledProductImage src={image} alt="product foto" />
+        </StyledImgContainer>
         <HeadingTwo>{productName}</HeadingTwo>
         <HeadingTwo price>
           {productPrice} <span>$</span>

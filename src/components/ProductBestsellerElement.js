@@ -5,6 +5,7 @@ import { HeadingTwo } from "./reusableComponents/Heading.js";
 import Button from "./reusableComponents/Button.js";
 import { FaShoppingBag, FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { device } from "../globalStyles/Device";
 
 const StyledWishlistButtonContainer = styled.div`
   display: flex;
@@ -34,9 +35,18 @@ const StyledAddToCart = styled(FaShoppingBag)`
 `;
 
 const StyledProductImage = styled.img`
-  width: 285px;
-  height: 275px;
-  padding: 15px;
+  @media ${device.mobileS} {
+    width: 170px;
+    height: 160px;
+  }
+  @media ${device.mobile} {
+    width: 170px;
+    height: 160px;
+  }
+  @media ${device.desktop} {
+    width: 215px;
+    height: 205px;
+  }
 `;
 
 const StyledProductListElement = styled.div`
@@ -54,30 +64,53 @@ const StyledProductListElement = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
+const StyledImgContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const StyledIsOnWishlist = styled(FaHeart)`
+  font-size: 18px;
+  color: #ce3c72;
+`;
 const ProductsBestsellerElement = ({
   productName,
   productPrice,
-  productImage,
-  productDesc,
+  image,
   productQuantity,
+  productDesc,
+  wishList,
 }) => {
   const context = useContext(RootContext);
   const {
     increaseCartCounter,
     addProductToCart,
     handleDuplicateNamesOfProducts,
+    addProductToWishlist,
+    handleWishlist,
+    openWishlistPopUp,
   } = context;
 
   return (
-    <StyledProductListElement>
+    <StyledProductListElement key={productName}>
       <StyledWishlistButtonContainer>
         <Link
           to={{
             pathname: `/`,
           }}
         >
-          <Button>
-            <StyledAddToWishlist />
+          <Button
+            onClick={() => {
+              addProductToWishlist(productName);
+              handleWishlist(productName);
+              openWishlistPopUp();
+            }}
+          >
+            {wishList === true ? (
+              <StyledIsOnWishlist />
+            ) : (
+              <StyledAddToWishlist />
+            )}
             <StyledTooltip>Add to wishlist</StyledTooltip>
           </Button>
         </Link>
@@ -88,13 +121,16 @@ const ProductsBestsellerElement = ({
           state: {
             productName,
             productPrice,
-            productImage,
+            image,
             productQuantity,
             productDesc,
+            wishList,
           },
         }}
       >
-        <StyledProductImage src={productImage} alt="product foto" />
+        <StyledImgContainer>
+          <StyledProductImage src={image} alt="product foto" />
+        </StyledImgContainer>
         <HeadingTwo>{productName}</HeadingTwo>
         <HeadingTwo price>
           {productPrice} <span>$</span>

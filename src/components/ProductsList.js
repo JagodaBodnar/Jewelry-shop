@@ -2,17 +2,28 @@ import React, { useContext } from "react";
 import RootContext from "../context/context";
 import ProductsListElement from "./ProductsListElement";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { device } from "../globalStyles/Device";
 
 const StyledProductList = styled.ul`
+  @media ${device.mobile} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media ${device.laptop} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media ${device.desktop} {
+    width: 60vw;
+    margin: 10px;
+    margin: 0 auto;
+  }
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   grid-gap: 5px;
-  margin: 10px;
   list-style: none;
   background-color: #ffffff;
-  width: 60vw;
-  margin: 0 auto;
+
+  @media ${device.mobileS} {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const StyledProductItem = styled.li`
@@ -34,9 +45,14 @@ const ProductsList = () => {
   const context = useContext(RootContext);
   const { products } = context;
 
+  const sortingAlgorithm = (firstProduct, secondProduct) =>
+    firstProduct.productId - secondProduct.productId;
+
+  const sortedProducts = products.sort(sortingAlgorithm);
+
   return (
     <StyledProductList>
-      {products.map((product) => {
+      {sortedProducts.map((product) => {
         return (
           <>
             <StyledProductItem key={product.productName}>

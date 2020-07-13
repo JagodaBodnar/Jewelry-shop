@@ -1,10 +1,11 @@
 import React from "react";
 import AwesomeSlider from "react-awesome-slider";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
-import "react-awesome-slider/dist/styles.css";
 import slide from "../../assets/images/slide.jpg";
 import slide2 from "../../assets/images/slide2.jpg";
 import slide3 from "../../assets/images/slide3.jpg";
+import { device } from "../../globalStyles/Device";
+import "./slider.scss";
 
 import styled, { css } from "styled-components";
 
@@ -17,34 +18,54 @@ const StyledSlider = styled(AutoplaySlider)`
   border-radius: 20px;
   cursor: pointer;
   z-index: 2;
+  @media ${device.mobileS} {
+    width: 100%;
+  }
+  @media ${device.mobile} {
+    width: 100%;
+  }
+  @media ${device.tablet} {
+    width: 90%;
+  }
+  @media ${device.laptop} {
+    width: 75%;
+  }
 `;
 const StyledSliderImg = styled.div`
   z-index: 2;
 `;
 const StyledSliderImgCaption = styled.p`
   position: absolute;
-  top: 350px;
-  left: 250px;
-  font-size: 30px;
+  top: 55%;
+  left: 5%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
-  align-items: center;
+  align-items: flex-start;
+  @media ${device.mobileS} {
+    font-size: 14px;
+  }
+  @media ${device.mobile} {
+    font-size: 16px;
+  }
+  @media ${device.desktop} {
+    font-size: 30px;
+  }
   ${({ captionTwo }) =>
     captionTwo &&
     css`
       position: absolute;
-      left: 150px;
-      bottom: 150px;
+      left: 10%;
+      bottom: 10%;
     `}
   ${({ captionThree }) =>
     captionThree &&
     css`
       position: absolute;
-      top: 150px;
-      left: 800px;
+      top: 65%;
+      left: 50%;
     `}
 `;
 const StyledSliderSubCaptionOne = styled.span`
@@ -65,9 +86,18 @@ const StyledSliderSubCaptionOne = styled.span`
 const StyledSliderSubCaptionTwo = styled.span`
   text-transform: uppercase;
   font-weight: 500;
-  font-size: 40px;
+
   color: #e5b367;
   letter-spacing: 2px;
+  @media ${device.mobileS} {
+    font-size: 24px;
+  }
+  @media ${device.mobile} {
+    font-size: 26px;
+  }
+  @media ${device.desktop} {
+    font-size: 40px;
+  }
   ${({ subCaptionSecond }) =>
     subCaptionSecond &&
     css`
@@ -84,7 +114,7 @@ const Slider = () => {
   return (
     <>
       <StyledSlider
-        play={true}
+        play={false}
         cancelOnInteraction={false}
         interval={6000}
         organicArrows={true}

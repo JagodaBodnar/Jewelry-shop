@@ -23,6 +23,14 @@ const Button = styled.button`
       width: 50px;
       height: 50px;
     `}
+    ${({ wishlist }) =>
+      wishlist &&
+      css`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+      `}
   ${({ isfilter }) =>
     isfilter &&
     css`
@@ -63,10 +71,16 @@ const Button = styled.button`
         margin-left: 10px;
         padding: 3px 0;
       `}
-      ${({ close }) =>
-        close &&
+      ${({ closeFilter }) =>
+        closeFilter &&
         css`
-          color: grey;
+          background-image: url(${({ closeFilter }) => closeFilter});
+          background-repeat: no-repeat;
+          position: absolute;
+          top: 2px;
+          right: 2px;
+          width: 10px;
+          height: 10px;
         `}
         ${({ quantity }) =>
           quantity &&

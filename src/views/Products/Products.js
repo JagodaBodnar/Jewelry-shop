@@ -21,7 +21,7 @@ const StyledProductNavContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 60vw;
-  margin: 100px auto 5px auto;
+  margin: 5px auto 5px auto;
 `;
 const StyledNoProductsFound = styled.div`
   text-align: center;
@@ -40,15 +40,11 @@ const Products = () => {
   const [isProductMenuVisible, setProductMenuVisiblity] = useState(false);
   const anim = useSpring({
     config: { duration: 500 },
-    height: isProductMenuVisible ? "280px" : "0px",
+    height: isProductMenuVisible ? "300px" : "0px",
     opacity: isProductMenuVisible ? "1" : "0",
     overflow: "hidden",
   });
-  // const anim = useSpring({
-  //   config: { duration: 500 },
-  //   height: isProductMenuVisible ? "280px" : "0px",
-  //   opacity: isProductMenuVisible ? "1" : "0",
-  // });
+
   return (
     <>
       <StyledProductCategoriesContainer>
@@ -67,7 +63,6 @@ const Products = () => {
           <ProductsFilterMenu isProductMenuVisible={isProductMenuVisible} />
         </animated.div>
       </StyledProductCategoriesContainer>
-
       <ProductsList />
       <StyledNoProductsFound>
         {context.products.length === 0

@@ -13,11 +13,12 @@ const StyledContactNavContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 60vw;
-  margin: 100px auto 5px auto;
+  margin: 0 auto 25px auto;
 `;
 const StyledFormContainer = styled.form`
-  width: 50%;
-  margin: 30px auto;
+  min-height: 69vh;
+  padding-top: 40px;
+  margin: 0 auto;
 `;
 const StyledFormElementsContainer = styled.div`
   display: flex;
@@ -29,7 +30,6 @@ const StyledInputContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 500px;
 `;
 const StyledFormLabel = styled.label`
   width: 150px;
@@ -138,7 +138,6 @@ const ContactForm = () => {
             />
           </StyledInputContainer>
           <StyledCheckboxContainer>
-            <input type="checkbox" name="checkbox" required />
             <Checkbox required checked={isChecked} onChange={handleChange} />
             <HeadingTwo termsAndConditions>
               I accept the{" "}

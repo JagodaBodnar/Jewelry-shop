@@ -1,19 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import Button from "../../components/reusableComponents/Button";
 import { FaHeart } from "react-icons/fa";
 import RootContext from "../../context/context";
-import {
-  HeadingTwo,
-  HeadingOne,
-} from "../../components/reusableComponents/Heading";
+import { HeadingOne } from "../../components/reusableComponents/Heading";
+import { device } from "../../globalStyles/Device";
 
 const StyledSingleProductContainer = styled.div`
+  @media ${device.mobileS} {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  @media ${device.mobile} {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  @media ${device.tablet} {
+    grid-template-columns: repeat(2, 1fr);
+  }
   width: 80vw;
-  height: 50vh;
-  margin: 15vh auto;
+  height: 63vh;
+  margin: 10vh auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   border-bottom: 1px solid #ececec;
   border-top: 1px solid #ececec;
@@ -41,6 +47,10 @@ const StyledPriceParagraph = styled.p`
   margin-top: 20px;
   color: ${({ theme }) => theme.indigo};
 `;
+const StyledIsOnWishlist = styled(FaHeart)`
+  font-size: 18px;
+  color: #ce3c72;
+`;
 const StyledAddToWishlist = styled(FaHeart)`
   font-size: 18px;
   color: #c2c2c2;
@@ -53,25 +63,46 @@ const StyledProductDescription = styled.div`
   width: 80%;
   color: ${({ theme }) => theme.grey};
 `;
+const StyledImage = styled.img`
+  @media ${device.mobileS} {
+    width: 278px;
+    height: 268px;
+  }
+  @media ${device.mobile} {
+    width: 278px;
+    height: 268px;
+  }
+  @media ${device.laptop} {
+    width: auto;
+    height: auto;
+  }
+`;
 const SingleProduct = (props) => {
   const context = useContext(RootContext);
   const {
     increaseCartCounter,
     addProductToCart,
     handleDuplicateNamesOfProducts,
+    handleWishlist,
+    openWishlistPopUp,
   } = context;
   const {
     productName,
-    productImage,
+    image,
     productPrice,
     productDesc,
+    wishList,
   } = props.location.state;
+  const [toggleWishlistLogo, setToggleWishlistLogo] = useState(wishList);
+  const toggle = () => {
+    setToggleWishlistLogo(!toggleWishlistLogo);
+  };
 
   return (
     <>
       <StyledSingleProductContainer>
         <StyledImgContainer>
-          <img src={productImage} alt="single product foto" />
+          <StyledImage src={image} alt="single product foto" />
         </StyledImgContainer>
         <StyledDetailsContainer>
           <StyledHeaderContainer>
@@ -79,9 +110,27 @@ const SingleProduct = (props) => {
             <StyledPriceParagraph>{productPrice}$</StyledPriceParagraph>
           </StyledHeaderContainer>
           <StyledButtonContainer>
-            <Button addToWishlist>
-              <StyledAddToWishlist />
+            <Button
+              addToWishlist
+              onClick={() => {
+                handleWishlist(productName);
+                toggle();
+                openWishlistPopUp();
+              }}
+            >
+              {wishList ? (
+                toggleWishlistLogo ? (
+                  <StyledIsOnWishlist />
+                ) : (
+                  <StyledAddToWishlist />
+                )
+              ) : toggleWishlistLogo ? (
+                <StyledIsOnWishlist />
+              ) : (
+                <StyledAddToWishlist />
+              )}
             </Button>
+
             <Button
               addToCart
               onClick={() => {

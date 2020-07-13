@@ -6,22 +6,54 @@ import styled, { css } from "styled-components";
 import ProductBestsellers from "../../components/ProductBestsellers";
 import ProductEmeraldBestseller from "../../components/ProductEmeraldBestsellers";
 import ProductRubyBestseller from "../../components/ProductRubyBestsellers";
+import { device } from "../../globalStyles/Device";
 
 const StyledContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
   grid-gap: 2px;
   width: 100%;
   margin-bottom: 2px;
   margin-top: 2px;
+  grid-template-columns: repeat(7, 1fr);
 `;
 const StyledSections = styled.section`
   margin-top: 80px;
+  margin-bottom: 20px;
 `;
-const StyledCategoryImg = styled.img`
+const StyledCategoryImgDiamond = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: url(${diamond});
+  @media ${device.mobile} {
+    grid-column: span 3;
+  }
+  @media ${device.mobileS} {
+    display: none;
+  }
+`;
+const StyledCategoryImgEmerald = styled.div`
   box-sizing: border-box;
   grid-column: span 3;
   width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: url(${emerald});
+  @media ${device.mobileS} {
+    display: none;
+  }
+`;
+const StyledCategoryImgRuby = styled.div`
+  box-sizing: border-box;
+  grid-column: span 3;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: url(${ruby});
+  @media ${device.mobileS} {
+    display: none;
+  }
 `;
 const StyledBestsellerHeader = styled.div`
   background-color: #594136;
@@ -43,9 +75,17 @@ const StyledBestsellerHeader = styled.div`
 `;
 const StyledProductContainer = styled.div`
   grid-column: span 4;
+  grid-gap: 20px;
   align-items: center;
-  overflow: hidden;
   display: flex;
+  @media ${device.mobileS} {
+    flex-direction: column;
+    grid-column: span 7;
+    margin-bottom: 10px;
+  }
+  @media ${device.mobile} {
+    flex-direction: column;
+  }
 `;
 const StyledParagraph = styled.p`
   letter-spacing: 3px;
@@ -56,14 +96,34 @@ const StyledParagraph = styled.p`
   font-family: "Open Sans", sans-serif;
   color: #fff;
   font-weight: 300;
+  @media ${device.mobileS} {
+    font-size: 16px;
+  }
+  @media ${device.mobile} {
+    font-size: 18px;
+  }
+  @media ${device.tablet} {
+    font-size: 25px;
+  }
 `;
 const StyledParagraphTwo = styled.p`
-  font-size: 18px;
   text-align: center;
   font-family: "Open Sans", sans-serif;
   color: #fff;
   font-weight: 300;
   width: 75%;
+  @media ${device.mobileS} {
+    font-size: 12px;
+  }
+  @media ${device.mobile} {
+    font-size: 14px;
+  }
+  @media ${device.tablet} {
+    font-size: 14px;
+  }
+  @media ${device.desktop} {
+    font-size: 18px;
+  }
 `;
 const StyledBestsellerDescription = styled.div`
   background-color: #a78b88;
@@ -89,7 +149,7 @@ const Bestsellers = () => {
     <>
       <StyledSections>
         <StyledContainer>
-          <StyledCategoryImg src={diamond} />
+          <StyledCategoryImgDiamond></StyledCategoryImgDiamond>
           <StyledProductContainer>
             <ProductBestsellers />
           </StyledProductContainer>
@@ -118,7 +178,7 @@ const Bestsellers = () => {
           <StyledProductContainer>
             <ProductEmeraldBestseller />
           </StyledProductContainer>
-          <StyledCategoryImg src={emerald} />
+          <StyledCategoryImgEmerald></StyledCategoryImgEmerald>
         </StyledContainer>
         <StyledContainer>
           <StyledBestsellerDescription emerald>
@@ -141,7 +201,7 @@ const Bestsellers = () => {
 
       <StyledSections>
         <StyledContainer>
-          <StyledCategoryImg src={ruby} />
+          <StyledCategoryImgRuby></StyledCategoryImgRuby>
           <StyledProductContainer>
             <ProductRubyBestseller />
           </StyledProductContainer>
