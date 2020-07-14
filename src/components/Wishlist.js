@@ -8,6 +8,15 @@ import { Link } from "react-router-dom";
 import { IoIosClose } from "react-icons/io";
 import { device } from "../globalStyles/Device";
 
+const StyledEmptyWishlist = styled.div`
+  min-height: 82vh;
+  margin-top: 20px;
+`;
+const StyledWishlistContainer = styled.div`
+  min-height: 82vh;
+  margin-top: 20px;
+`;
+
 const StyledProductList = styled.ul`
   display: grid;
   grid-gap: 5px;
@@ -34,14 +43,6 @@ const StyledProductList = styled.ul`
     grid-template-columns: repeat(3, 1fr);
   }
 `;
-const StyledWishlistConteiner = styled.div`
-  min-height: 82vh;
-  margin-top: 20px;
-`;
-const StyledEmptyWishlist = styled.div`
-  min-height: 82vh;
-  margin-top: 20px;
-`;
 
 const StyledProductItem = styled.li`
   justify-self: center;
@@ -58,14 +59,6 @@ const StyledProductItem = styled.li`
   }
 `;
 
-const StyledTooltip = styled.span`
-  color: #ead065;
-  font-size: 10px;
-  margin: 0 5px;
-  opacity: 0;
-  font-family: "Scope One", serif;
-  vertical-align: top;
-`;
 const StyledRemoveFromListContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -86,21 +79,15 @@ const StyledProductImage = styled.img`
   height: 275px;
   padding: 15px;
 `;
-
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 const StyledProductListElement = styled.div`
   padding: 15px;
   &:hover ${StyledAddToCart} {
     color: #c2c2c2;
     transition: 0.5s;
-    &:hover,
-    &:hover + ${StyledTooltip} {
-      color: ${({ theme }) => theme.pink};
-      opacity: 1;
-    }
   }
-`;
-const StyledLink = styled(Link)`
-  text-decoration: none;
 `;
 
 const Wishlist = () => {
@@ -119,7 +106,7 @@ const Wishlist = () => {
           <HeadingTwo>No products on your wishlist</HeadingTwo>
         </StyledEmptyWishlist>
       ) : (
-        <StyledWishlistConteiner>
+        <StyledWishlistContainer>
           <StyledProductList>
             {wishlist.map((item) => {
               const {
@@ -179,7 +166,7 @@ const Wishlist = () => {
               );
             })}
           </StyledProductList>
-        </StyledWishlistConteiner>
+        </StyledWishlistContainer>
       )}
     </>
   );

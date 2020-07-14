@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import RootContext from "../context/context";
 import ProductBestsellerElement from "./ProductBestsellerElement";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { device } from "../globalStyles/Device";
 
 const StyledProductList = styled.ul`
@@ -31,9 +30,7 @@ const StyledProductItem = styled.li`
     border-bottom: none;
   }
 `;
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;
+
 const ProductEmeraldBestseller = () => {
   const context = useContext(RootContext);
   const { emerald } = context;

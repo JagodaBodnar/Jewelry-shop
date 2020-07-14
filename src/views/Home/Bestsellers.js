@@ -8,6 +8,13 @@ import ProductEmeraldBestseller from "../../components/ProductEmeraldBestsellers
 import ProductRubyBestseller from "../../components/ProductRubyBestsellers";
 import { device } from "../../globalStyles/Device";
 
+const StyledSections = styled.section`
+  margin-top: 80px;
+  margin-bottom: 20px;
+  @media ${device.mobileS} {
+    margin: 0;
+  }
+`;
 const StyledContainer = styled.div`
   display: grid;
   grid-gap: 2px;
@@ -15,13 +22,6 @@ const StyledContainer = styled.div`
   margin-bottom: 2px;
   margin-top: 2px;
   grid-template-columns: repeat(7, 1fr);
-`;
-const StyledSections = styled.section`
-  margin-top: 80px;
-  margin-bottom: 20px;
-  @media ${device.mobileS} {
-    margin: 0;
-  }
 `;
 const StyledCategoryImgDiamond = styled.div`
   box-sizing: border-box;
@@ -109,6 +109,25 @@ const StyledParagraph = styled.p`
     font-size: 25px;
   }
 `;
+const StyledBestsellerDescription = styled.div`
+  background-color: #a78b88;
+  grid-column: span 4;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${({ emerald }) =>
+    emerald &&
+    css`
+      background-color: #9aafaa;
+    `}
+  ${({ ruby }) =>
+    ruby &&
+    css`
+      background-color: #e9b3c1;
+    `}
+`;
+
 const StyledParagraphTwo = styled.p`
   text-align: center;
   font-family: "Open Sans", sans-serif;
@@ -127,24 +146,6 @@ const StyledParagraphTwo = styled.p`
   @media ${device.desktop} {
     font-size: 18px;
   }
-`;
-const StyledBestsellerDescription = styled.div`
-  background-color: #a78b88;
-  grid-column: span 4;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  ${({ emerald }) =>
-    emerald &&
-    css`
-      background-color: #9aafaa;
-    `}
-  ${({ ruby }) =>
-    ruby &&
-    css`
-      background-color: #e9b3c1;
-    `}
 `;
 
 const Bestsellers = () => {

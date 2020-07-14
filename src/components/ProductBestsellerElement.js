@@ -20,20 +20,11 @@ const StyledTooltip = styled.span`
   font-family: "Scope One", serif;
   vertical-align: top;
 `;
-const StyledAddToWishlist = styled(FaHeart)`
-  font-size: 18px;
-  color: transparent;
-`;
-const StyledAddToCartButtonContainer = styled.div`
+const StyledImgContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 `;
-const StyledAddToCart = styled(FaShoppingBag)`
-  font-size: 18px;
-  color: transparent;
-`;
-
 const StyledProductImage = styled.img`
   @media ${device.mobileS} {
     width: 170px;
@@ -48,7 +39,26 @@ const StyledProductImage = styled.img`
     height: 205px;
   }
 `;
-
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+const StyledAddToCartButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+const StyledAddToCart = styled(FaShoppingBag)`
+  font-size: 18px;
+  color: transparent;
+`;
+const StyledIsOnWishlist = styled(FaHeart)`
+  font-size: 18px;
+  color: #ce3c72;
+`;
+const StyledAddToWishlist = styled(FaHeart)`
+  font-size: 18px;
+  color: transparent;
+`;
 const StyledProductListElement = styled.div`
   padding: 15px;
   &:hover ${StyledAddToWishlist}, &:hover ${StyledAddToCart} {
@@ -61,18 +71,7 @@ const StyledProductListElement = styled.div`
     }
   }
 `;
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;
-const StyledImgContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const StyledIsOnWishlist = styled(FaHeart)`
-  font-size: 18px;
-  color: #ce3c72;
-`;
+
 const ProductsBestsellerElement = ({
   productName,
   productPrice,

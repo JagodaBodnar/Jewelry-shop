@@ -41,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+const StyledCartWrapper = styled.div`
+  position: absolute;
+  z-index: 9999;
+`;
 const StyledModalContainer = styled.div`
   @media ${device.mobileS} {
     height: 70vh;
@@ -54,10 +58,6 @@ const StyledModalContainer = styled.div`
   overflow-y: auto;
 `;
 
-const StyledCartWrapper = styled.div`
-  position: absolute;
-  z-index: 9999;
-`;
 const StyledCartHeader = styled.div`
   display: grid;
   grid-template-columns: repeat(8, 1fr);

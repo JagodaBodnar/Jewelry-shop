@@ -37,6 +37,11 @@ const StyledAddToCart = styled(FaShoppingBag)`
   font-size: 18px;
   color: transparent;
 `;
+const StyledImgContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const StyledProductImage = styled.img`
   @media ${device.mobile} {
@@ -70,11 +75,7 @@ const StyledProductListElement = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
-const StyledImgContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+
 const ProductsListElement = ({
   productName,
   productPrice,

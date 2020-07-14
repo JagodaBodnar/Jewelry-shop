@@ -54,7 +54,6 @@ const StyledWishlistPopUp = styled.div`
   z-index: 1;
   left: 50%;
   top: 5%;
-
   &::before {
     content: "";
     position: absolute;
