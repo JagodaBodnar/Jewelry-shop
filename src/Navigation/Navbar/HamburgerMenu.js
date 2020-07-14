@@ -7,20 +7,16 @@ const StyledRoutes = styled.ul`
   font-family: "Scope One", serif;
   display: flex;
   flex-direction: column;
-  position: fixed;
   top: 8vh;
   padding: 20px;
   left: 0;
-  min-height: 100px;
   width: 100%;
-  border-bottom: solid 1px #ececec;
   padding: 0;
   background-color: white;
   z-index: 999;
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
-
   color: #828281;
 `;
 const StyledLi = styled.li`

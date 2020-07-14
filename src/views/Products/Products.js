@@ -6,15 +6,16 @@ import Button from "../../components/reusableComponents/Button";
 import styled from "styled-components";
 import { HeadingOne } from "../../components/reusableComponents/Heading";
 import { useSpring, animated } from "react-spring";
+import { device } from "../../globalStyles/Device";
 
 const StyledProductCategoriesContainer = styled.div`
-  position: sticky;
+  position: fixed;
   position: -webkit-sticky;
   z-index: 100;
-  top: 8vh;
+  top: 0;
   width: 100%;
   background-color: #fff;
-  margin: 20px 0;
+  margin-top: 8vh;
 `;
 const StyledProductNavContainer = styled.div`
   display: flex;

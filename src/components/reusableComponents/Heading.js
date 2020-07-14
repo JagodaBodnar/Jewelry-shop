@@ -57,8 +57,13 @@ export const HeadingTwo = styled.h2`
   font-weight: 200;
   text-align: center;
   margin: 5px auto;
-  max-height: 50px;
-  max-width: 60%;
+ 
+  ${({ products }) =>
+    products &&
+    css`
+      max-height: 50px;
+      max-width: 60%;
+    `}
   ${({ price }) =>
     price &&
     css`
@@ -82,7 +87,7 @@ export const HeadingTwo = styled.h2`
       css`
         grid-column: span 3;
         text-align: center;
-        max-width: 100%;
+        width: 100%;
         margin: 0;
         @media ${device.mobileS} {
           font-size: 12px;
@@ -100,7 +105,7 @@ export const HeadingTwo = styled.h2`
           display: flex;
           justify-content: center;
           align-items: center;
-          max-width: 100%;
+          width: 100%;
           margin: 0;
         `}
       ${({ bold }) =>

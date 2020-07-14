@@ -18,7 +18,7 @@ const StyledSingleProductContainer = styled.div`
   }
   width: 80vw;
   height: 63vh;
-  margin: 10vh auto;
+  margin: 18vh auto 10vh auto;
   display: grid;
   grid-gap: 10px;
   border-bottom: 1px solid #ececec;
@@ -65,8 +65,8 @@ const StyledProductDescription = styled.div`
 `;
 const StyledImage = styled.img`
   @media ${device.mobileS} {
-    width: 278px;
-    height: 268px;
+    width: 240px;
+    height: 230px;
   }
   @media ${device.mobile} {
     width: 278px;

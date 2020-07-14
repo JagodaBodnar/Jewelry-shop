@@ -14,9 +14,6 @@ const StyledProductList = styled.ul`
   @media ${device.laptop} {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media ${device.mobileS} {
-    grid-template-columns: repeat(2, 1fr);
-  }
 `;
 
 const StyledProductItem = styled.li`

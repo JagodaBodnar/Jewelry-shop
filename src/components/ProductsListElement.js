@@ -124,7 +124,7 @@ const ProductsListElement = ({
         <StyledImgContainer>
           <StyledProductImage src={image} alt="product foto" />
         </StyledImgContainer>
-        <HeadingTwo>{productName}</HeadingTwo>
+        <HeadingTwo products>{productName}</HeadingTwo>
         <HeadingTwo price>
           {productPrice} <span>$</span>
         </HeadingTwo>

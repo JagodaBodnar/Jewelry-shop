@@ -19,6 +19,9 @@ const StyledContainer = styled.div`
 const StyledSections = styled.section`
   margin-top: 80px;
   margin-bottom: 20px;
+  @media ${device.mobileS} {
+    margin: 0;
+  }
 `;
 const StyledCategoryImgDiamond = styled.div`
   box-sizing: border-box;
@@ -113,7 +116,7 @@ const StyledParagraphTwo = styled.p`
   font-weight: 300;
   width: 75%;
   @media ${device.mobileS} {
-    font-size: 12px;
+    font-size: 10px;
   }
   @media ${device.mobile} {
     font-size: 14px;

@@ -13,7 +13,7 @@ import HamburgerNavigation from "./HamburgerMenu";
 import WishlistPopUp from "../../components/WishlistPopUp";
 
 const StyledNav = styled.nav`
-  position: sticky;
+  position: fixed;
   z-index: 101;
   top: 0;
   width: 100%;
@@ -27,9 +27,17 @@ const StyledUl = styled.ul`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 10px 20px 0 0;
   font-family: "Scope One", serif;
   position: relative;
+  @media ${device.mobileS} {
+    padding: 0;
+  }
+  @media ${device.mobile} {
+    padding: 0;
+  }
+  @media ${device.tablet} {
+    padding: 10px 20px 0 0;
+  }
 `;
 
 const StyledLi = styled.li`

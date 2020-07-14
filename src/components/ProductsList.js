@@ -7,22 +7,25 @@ import { device } from "../globalStyles/Device";
 const StyledProductList = styled.ul`
   @media ${device.mobile} {
     grid-template-columns: repeat(2, 1fr);
+    margin: 15vh auto;
   }
   @media ${device.laptop} {
     grid-template-columns: repeat(3, 1fr);
+    width: 80vw;
+    margin: 15vh auto;
   }
   @media ${device.desktop} {
-    width: 60vw;
+    width: 80vw;
     margin: 10px;
-    margin: 0 auto;
+    margin: 15vh auto;
   }
   display: grid;
   grid-gap: 5px;
   list-style: none;
   background-color: #ffffff;
-
   @media ${device.mobileS} {
     grid-template-columns: repeat(1, 1fr);
+    margin: 15vh auto;
   }
 `;
 

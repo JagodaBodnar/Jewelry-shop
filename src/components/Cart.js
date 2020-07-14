@@ -31,10 +31,7 @@ const useStyles = makeStyles((theme) => ({
       height: "50vh",
     },
     "@media(min-width: 576px)": {
-      height: "70vh",
-    },
-    "@media(min-width: 992px)": {
-      height: "90vh",
+      height: "50vh",
     },
     "@media(min-width: 576px)": {
       width: "100vw",
@@ -49,10 +46,10 @@ const StyledModalContainer = styled.div`
     height: 70vh;
   }
   @media ${device.mobile} {
-    height: 70vh;
+    height: 50vh;
   }
   @media ${device.laptop} {
-    height: 90vh;
+    height: 80vh;
   }
   overflow-y: auto;
 `;

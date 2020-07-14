@@ -7,13 +7,14 @@ import {
 import Button from "../../components/reusableComponents/Button";
 import { Checkbox } from "@material-ui/core";
 import RootContext from "../../context/context";
+import { device } from "../../globalStyles/Device";
 
 const StyledContactNavContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 60vw;
-  margin: 0 auto 25px auto;
+  margin-top: 8vh;
 `;
 const StyledFormContainer = styled.form`
   min-height: 69vh;
@@ -30,9 +31,26 @@ const StyledInputContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+
+  padding: 5px;
+  @media ${device.mobileS} {
+    width: 100%;
+  }
+  @media ${device.mobile} {
+    width: 80%;
+  }
+  @media ${device.tablet} {
+    width: 60%;
+  }
+  @media ${device.laptop} {
+    width: 40%;
+  }
+  @media ${device.desktop} {
+    width: 25%;
+  }
 `;
 const StyledFormLabel = styled.label`
-  width: 150px;
+  width: 30%;
   font-family: "Scope One", serif;
   color: #828281;
   font-size: 14px;
@@ -42,7 +60,7 @@ const StyledFormLabel = styled.label`
 const StyledFormInput = styled.input`
   margin: 10px 0;
   font-family: "Scope One", serif;
-  width: 250px;
+  width: 70%;
   outline: none;
   min-height: 25px;
 `;
@@ -50,6 +68,7 @@ const StyledFormTextarea = styled.textarea`
   font-family: "Scope One", serif;
   margin: 10px 0;
   outline: none;
+  width: 70%;
 `;
 const StyledCheckboxContainer = styled.div`
   display: flex;

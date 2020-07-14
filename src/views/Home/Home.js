@@ -7,7 +7,7 @@ import { device } from "../../globalStyles/Device";
 const StyledSliderWrapper = styled.div`
   display: block;
   width: 100%;
-  margin: 0;
+  margin-top: 8vh;
   padding-top: 10px;
   @media ${device.mobileS} {
     height: 50vh;
