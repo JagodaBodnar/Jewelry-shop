@@ -18,9 +18,11 @@ const StyledProductList = styled.ul`
   margin: 0 auto;
   @media ${device.mobileS} {
     grid-template-columns: repeat(1, 1fr);
+    width: 100vw;
   }
   @media ${device.mobile} {
     grid-template-columns: repeat(1, 1fr);
+    width: 80vw;
   }
   @media ${device.tablet} {
     grid-template-columns: repeat(1, 1fr);

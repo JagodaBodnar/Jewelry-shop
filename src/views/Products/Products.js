@@ -15,7 +15,15 @@ const StyledProductCategoriesContainer = styled.div`
   top: 0;
   width: 100%;
   background-color: #fff;
-  margin-top: 8vh;
+  @media ${device.mobileS} {
+    top: 11vh;
+  }
+  @media ${device.mobile} {
+    top: 10vh;
+  }
+  @media ${device.desktop} {
+    top: 8vh;
+  }
 `;
 const StyledProductNavContainer = styled.div`
   display: flex;

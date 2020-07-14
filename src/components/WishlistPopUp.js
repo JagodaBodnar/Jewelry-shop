@@ -20,7 +20,7 @@ const StyledWishlistPopUpContainer = styled.div`
   user-select: none;
   z-index: 9999;
   @media ${device.mobileS} {
-    left: calc(100% - 280px);
+    left: calc(100% - 260px);
   }
   @media ${device.mobile} {
     left: calc(100% - 280px);
