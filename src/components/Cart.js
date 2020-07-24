@@ -155,7 +155,6 @@ const Cart = ({ history }) => {
                   productPrice,
                   productQuantity,
                   image,
-                  productId,
                 } = item;
                 return (
                   <StyledCartItemElement key={uuidv4()}>
