@@ -14,7 +14,7 @@ const MainTemplate = ({ children }) => {
         <>
           <Navbar />
           <Cart />
-          <div>{children}</div>
+          <>{children}</>
           <Footer />
         </>
       </ThemeProvider>

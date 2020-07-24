@@ -3,9 +3,9 @@ import emerald from "../../assets/images/emerald.jpg";
 import ruby from "../../assets/images/ruby.jpg";
 import diamond from "../../assets/images/diamond.jpg";
 import styled, { css } from "styled-components";
-import ProductBestsellers from "../../components/ProductBestsellers";
-import ProductEmeraldBestseller from "../../components/ProductEmeraldBestsellers";
-import ProductRubyBestseller from "../../components/ProductRubyBestsellers";
+import ProductBestsellers from "../../components/bestsellerProducts/ProductBestsellers";
+import ProductEmeraldBestseller from "../../components/bestsellerProducts/ProductEmeraldBestsellers";
+import ProductRubyBestseller from "../../components/bestsellerProducts/ProductRubyBestsellers";
 import { device } from "../../globalStyles/Device";
 
 const StyledSections = styled.section`

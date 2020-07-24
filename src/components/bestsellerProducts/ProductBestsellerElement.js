@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import RootContext from "../context/context";
+import RootContext from "../../context/context";
 import styled from "styled-components";
-import { HeadingTwo } from "./reusableComponents/Heading.js";
-import Button from "./reusableComponents/Button.js";
+import { HeadingTwo } from "../reusableComponents/Heading.js";
+import Button from "../reusableComponents/Button.js";
 import { FaShoppingBag, FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { device } from "../globalStyles/Device";
+import { device } from "../../globalStyles/Device";
 
 const StyledWishlistButtonContainer = styled.div`
   display: flex;

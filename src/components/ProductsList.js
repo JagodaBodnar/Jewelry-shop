@@ -3,6 +3,7 @@ import RootContext from "../context/context";
 import ProductsListElement from "./ProductsListElement";
 import styled from "styled-components";
 import { device } from "../globalStyles/Device";
+import { v4 as uuidv4 } from "uuid";
 
 const StyledProductList = styled.ul`
   @media ${device.mobile} {
@@ -57,11 +58,9 @@ const ProductsList = () => {
     <StyledProductList>
       {sortedProducts.map((product) => {
         return (
-          <>
-            <StyledProductItem key={product.productName}>
-              <ProductsListElement {...product} />
-            </StyledProductItem>
-          </>
+          <StyledProductItem key={uuidv4()}>
+            <ProductsListElement {...product} key={uuidv4()} />
+          </StyledProductItem>
         );
       })}
     </StyledProductList>

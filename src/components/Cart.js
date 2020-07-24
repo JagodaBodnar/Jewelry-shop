@@ -13,6 +13,7 @@ import { IoIosClose, IoIosRemove, IoIosAdd } from "react-icons/io";
 import Button from "../components/reusableComponents/Button";
 import PaypalButton from "./PaypalButton";
 import { device } from "../globalStyles/Device";
+import { v4 as uuidv4 } from "uuid";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -32,8 +33,6 @@ const useStyles = makeStyles((theme) => ({
     },
     "@media(min-width: 576px)": {
       height: "50vh",
-    },
-    "@media(min-width: 576px)": {
       width: "100vw",
     },
     "@media(min-width: 1200px)": {
@@ -156,47 +155,46 @@ const Cart = ({ history }) => {
                   productPrice,
                   productQuantity,
                   image,
+                  productId,
                 } = item;
                 return (
-                  <>
-                    <StyledCartItemElement key={productName}>
-                      <StyledCartItemImage src={image} alt="product foto" />
-                      <HeadingTwo cartItemName>{productName}</HeadingTwo>
-                      <HeadingTwo bold cartItemQuantity>
-                        <Button
-                          quantity
-                          onClick={() => {
-                            decreaseItemCounter(productName);
-                          }}
-                        >
-                          <IoIosRemove />
-                        </Button>
-                        <StyledProductQuantity>
-                          {productQuantity} {itemCounter}
-                        </StyledProductQuantity>
-                        <Button
-                          quantity
-                          onClick={() => {
-                            increaseItemCounter(productName);
-                          }}
-                        >
-                          <IoIosAdd />
-                        </Button>
-                      </HeadingTwo>
-                      <HeadingTwo bold>{productPrice}$</HeadingTwo>
+                  <StyledCartItemElement key={uuidv4()}>
+                    <StyledCartItemImage src={image} alt="product foto" />
+                    <HeadingTwo cartItemName>{productName}</HeadingTwo>
+                    <HeadingTwo bold cartItemQuantity>
                       <Button
-                        close
-                        onClick={() =>
-                          removeProductFromCart(productName, productQuantity)
-                        }
+                        quantity
+                        onClick={() => {
+                          decreaseItemCounter(productName);
+                        }}
                       >
-                        <IoIosClose />
+                        <IoIosRemove />
                       </Button>
-                      <HeadingTwo bold>
-                        {productQuantity * productPrice}$
-                      </HeadingTwo>
-                    </StyledCartItemElement>
-                  </>
+                      <StyledProductQuantity>
+                        {productQuantity} {itemCounter}
+                      </StyledProductQuantity>
+                      <Button
+                        quantity
+                        onClick={() => {
+                          increaseItemCounter(productName);
+                        }}
+                      >
+                        <IoIosAdd />
+                      </Button>
+                    </HeadingTwo>
+                    <HeadingTwo bold>{productPrice}$</HeadingTwo>
+                    <Button
+                      close
+                      onClick={() =>
+                        removeProductFromCart(productName, productQuantity)
+                      }
+                    >
+                      <IoIosClose />
+                    </Button>
+                    <HeadingTwo bold>
+                      {productQuantity * productPrice}$
+                    </HeadingTwo>
+                  </StyledCartItemElement>
                 );
               })}
             </StyledCartItemList>

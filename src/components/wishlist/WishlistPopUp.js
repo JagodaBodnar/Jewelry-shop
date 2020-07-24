@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import RootContext from "../context/context";
+import RootContext from "../../context/context";
 import styled from "styled-components";
-import { HeadingTwo } from "./reusableComponents/Heading";
+import { HeadingTwo } from "./../reusableComponents/Heading";
 import { Link } from "react-router-dom";
-import Button from "./reusableComponents/Button";
+import Button from "./../reusableComponents/Button";
 import { IoIosClose } from "react-icons/io";
-import { routes } from "../routes";
-import { device } from "../globalStyles/Device";
+import { routes } from "../../routes";
+import { device } from "../../globalStyles/Device";
+import { v4 as uuidv4 } from "uuid";
 
 const StyledWishlistPopUpContainer = styled.div`
   position: relative;
@@ -110,31 +111,30 @@ const WishlistPopUp = () => {
                   productQuantity,
                   productDesc,
                   image,
+                  productId,
                 } = item;
                 return (
-                  <>
-                    <StyledProductListElement key={productName}>
-                      <StyledLink
-                        to={{
-                          pathname: `/products/${productName}`,
-                          state: {
-                            productName,
-                            productPrice,
-                            image,
-                            productDesc,
-                            productQuantity,
-                          },
-                        }}
-                      >
-                        <StyledProductImage src={image} alt="product foto" />
-                        <HeadingTwo>{productName}</HeadingTwo>
-                        <HeadingTwo>{productPrice}$</HeadingTwo>
-                      </StyledLink>
-                      <Button close onClick={() => handleWishlist(productName)}>
-                        <IoIosClose />
-                      </Button>
-                    </StyledProductListElement>
-                  </>
+                  <StyledProductListElement key={uuidv4()}>
+                    <StyledLink
+                      to={{
+                        pathname: `/products/${productName}`,
+                        state: {
+                          productName,
+                          productPrice,
+                          image,
+                          productDesc,
+                          productQuantity,
+                        },
+                      }}
+                    >
+                      <StyledProductImage src={image} alt="product foto" />
+                      <HeadingTwo>{productName}</HeadingTwo>
+                      <HeadingTwo>{productPrice}$</HeadingTwo>
+                    </StyledLink>
+                    <Button close onClick={() => handleWishlist(productName)}>
+                      <IoIosClose />
+                    </Button>
+                  </StyledProductListElement>
                 );
               })}
               <StyledGoToWishlist to={routes.list}>

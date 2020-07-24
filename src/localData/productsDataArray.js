@@ -53,19 +53,6 @@ import RubyEyeEngagementRing from "../assets/images/RubyEyeEngagementRing.png";
 import SapphireEyeEngagementRing from "../assets/images/SapphireEyeEngagementRing.png";
 import BlackEyeEngagementRing from "../assets/images/BlackEyeEngagementRing.png";
 
-// import { productsCategories, metal, mineral } from "./productsCategories.js";
-// const {
-//   engagementRings,
-//   earings,
-//   necklace,
-//   bracelets,
-//   weddingRings,
-// } = productsCategories;
-
-// const { gold, whiteGold, silver } = metal;
-
-// const { diamond, sapphire, ruby, emerald, pearl, swarovskiCrystal } = mineral;
-
 export const productsDataArray = [
   {
     productName: "Gold Swarovski Crystal Bracelet",

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import RootContext from "../context/context";
+import RootContext from "../../context/context";
 import ProductBestsellerElement from "./ProductBestsellerElement";
 import styled from "styled-components";
-import { device } from "../globalStyles/Device";
+import { device } from "../../globalStyles/Device";
 
 const StyledProductList = styled.ul`
   display: grid;
@@ -31,13 +31,13 @@ const StyledProductItem = styled.li`
   }
 `;
 
-const ProductEmeraldBestseller = () => {
+const ProductRubyBestseller = () => {
   const context = useContext(RootContext);
-  const { emerald } = context;
+  const { ruby } = context;
 
   return (
     <StyledProductList>
-      {emerald.map((product) => {
+      {ruby.map((product) => {
         return (
           <StyledProductItem key={product.productName}>
             <ProductBestsellerElement {...product} />
@@ -48,4 +48,4 @@ const ProductEmeraldBestseller = () => {
   );
 };
 
-export default ProductEmeraldBestseller;
+export default ProductRubyBestseller;

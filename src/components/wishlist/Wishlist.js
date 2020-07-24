@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import RootContext from "../context/context";
+import RootContext from "../../context/context";
 import styled from "styled-components";
-import Button from "./reusableComponents/Button";
-import { HeadingTwo } from "./reusableComponents/Heading";
+import Button from "../reusableComponents/Button";
+import { HeadingTwo } from "../reusableComponents/Heading";
 import { FaShoppingBag } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoIosClose } from "react-icons/io";
-import { device } from "../globalStyles/Device";
+import { device } from "../../globalStyles/Device";
 
 const StyledEmptyWishlist = styled.div`
   min-height: 82vh;
@@ -114,7 +114,6 @@ const Wishlist = () => {
                 productPrice,
                 productQuantity,
                 image,
-                wishList,
               } = item;
               return (
                 <>

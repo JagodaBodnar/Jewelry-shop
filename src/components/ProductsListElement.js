@@ -6,6 +6,7 @@ import Button from "./reusableComponents/Button.js";
 import { FaShoppingBag, FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { device } from "../globalStyles/Device";
+import { v4 as uuidv4 } from "uuid";
 
 const StyledWishlistButtonContainer = styled.div`
   display: flex;
@@ -83,6 +84,7 @@ const ProductsListElement = ({
   productDesc,
   productQuantity,
   wishList,
+  productId,
 }) => {
   const context = useContext(RootContext);
   const {
@@ -95,7 +97,7 @@ const ProductsListElement = ({
   } = context;
 
   return (
-    <StyledProductListElement key={productName}>
+    <StyledProductListElement key={uuidv4()}>
       <StyledWishlistButtonContainer>
         <Button
           onClick={() => {

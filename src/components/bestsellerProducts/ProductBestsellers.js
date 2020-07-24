@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import RootContext from "../context/context";
+import RootContext from "../../context/context";
 import ProductBestsellerElement from "./ProductBestsellerElement";
 import styled from "styled-components";
-import { device } from "../globalStyles/Device";
+import { device } from "../../globalStyles/Device";
 
 const StyledProductList = styled.ul`
   display: grid;

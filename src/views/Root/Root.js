@@ -28,7 +28,6 @@ const Root = () => {
   const [filterToRemove, setFilterToRemove] = useState([]);
   const [cartTotal, setCartTotal] = useState(10);
   const [openPopUp, setOpenPopUp] = useState(false);
-<<<<<<< HEAD
   const [bestsellers, setBestsellers] = useState([]);
   const [emerald, setEmerald] = useState([]);
   const [ruby, setRuby] = useState([]);
@@ -61,20 +60,6 @@ const Root = () => {
       setRuby(ruby);
     }
   };
-=======
-  const [bestsellers, setBestsellers] = useState([
-    productsDataArray[0],
-    productsDataArray[18],
-  ]);
-  const [emerald, setEmerald] = useState([
-    productsDataArray[12],
-    productsDataArray[43],
-  ]);
-  const [ruby, setRuby] = useState([
-    productsDataArray[45],
-    productsDataArray[47],
-  ]);
->>>>>>> b6745e5... shop finished project
 
   const setContentfulData = (data) => {
     if (data.length !== 0) {
@@ -390,21 +375,12 @@ const Root = () => {
           handleChange,
           isChecked,
           filterToRemove,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> b6745e5... shop finished project
           addProductToWishlist,
           removeProductFromWishlist,
           handleWishlist,
           wishlist,
           openWishlistPopUp,
           openPopUp,
-<<<<<<< HEAD
-=======
->>>>>>> 2f9efcf...  filter final version
-=======
->>>>>>> b6745e5... shop finished project
         }}
       >
         <MainTemplate>

@@ -12,6 +12,7 @@ import {
 } from "../../localData/productsCategories";
 import { useSpring, animated } from "react-spring";
 import { device } from "../../globalStyles/Device";
+import { v4 as uuidv4 } from "uuid";
 
 const AnimatedNavbarWrapper = styled.nav`
   background-color: ${({ theme }) => theme.navyBlue};
@@ -143,7 +144,7 @@ const ProductsFilterMenu = ({ isProductMenuVisible }) => {
             <StyledCategories onClick={filterProducts}>
               {metal.map((item) => {
                 return (
-                  <StyledCategoryItem data-target={item}>
+                  <StyledCategoryItem data-target={item} key={uuidv4()}>
                     {item}
                   </StyledCategoryItem>
                 );
@@ -155,7 +156,7 @@ const ProductsFilterMenu = ({ isProductMenuVisible }) => {
             <StyledCategories onClick={filterProducts}>
               {mineral.map((item) => {
                 return (
-                  <StyledCategoryItem data-target={item}>
+                  <StyledCategoryItem data-target={item} key={uuidv4()}>
                     {item}
                   </StyledCategoryItem>
                 );
@@ -167,7 +168,7 @@ const ProductsFilterMenu = ({ isProductMenuVisible }) => {
             <StyledCategories onClick={filterProducts}>
               {productsCategories.map((item) => {
                 return (
-                  <StyledCategoryItem data-target={item}>
+                  <StyledCategoryItem data-target={item} key={uuidv4()}>
                     {item}
                   </StyledCategoryItem>
                 );
@@ -192,19 +193,17 @@ const ProductsFilterMenu = ({ isProductMenuVisible }) => {
           <StyledSelectedCategoryContainer>
             {filterToRemove.map((item) => {
               return (
-                <>
-                  <StyledSelectedCategoryElement>
-                    <StyledCategoryItem selectedCategory>
-                      {item}
-                    </StyledCategoryItem>
+                <StyledSelectedCategoryElement key={uuidv4()}>
+                  <StyledCategoryItem selectedCategory>
+                    {item}
+                  </StyledCategoryItem>
 
-                    <Button
-                      closeFilter={closeFilter}
-                      data-target={item}
-                      onClick={removeFilterCategory}
-                    ></Button>
-                  </StyledSelectedCategoryElement>
-                </>
+                  <Button
+                    closeFilter={closeFilter}
+                    data-target={item}
+                    onClick={removeFilterCategory}
+                  ></Button>
+                </StyledSelectedCategoryElement>
               );
             })}
           </StyledSelectedCategoryContainer>

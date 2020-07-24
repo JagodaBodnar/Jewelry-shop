@@ -10,7 +10,7 @@ import { FaHeart } from "react-icons/fa";
 import { device } from "../../globalStyles/Device";
 import HamburgerMenu from "react-hamburger-menu";
 import HamburgerNavigation from "./HamburgerMenu";
-import WishlistPopUp from "../../components/WishlistPopUp";
+import WishlistPopUp from "../../components/wishlist/WishlistPopUp";
 
 const StyledNav = styled.nav`
   position: fixed;
