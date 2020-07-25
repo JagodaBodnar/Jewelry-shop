@@ -1,69 +1,38 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-DEMO: https://hopeful-lumiere-a6ae81.netlify.app
+### Project description
 
-## Available Scripts
+Application was created with [create-react-app](https://github.com/facebook/create-react-app) for education purposes.
+Product images has been downloaded from [pngguru](https://www.pngguru.com/) according to licese notification on the website no attribution is required for Non-Commercial-Use.
+Home page images has been acquired as part of a free offert from [ADOBE STOCK](https://stock.adobe.com/).
+Cart paypal feature requires APIkey from [PayPalSandbox](https://developer.paypal.com/), which means that own key has to be obtained in order to use it.
+Products content is managed through [Contentful](https://www.contentful.com/).
 
-In the project directory, you can run:
+### Demo
 
-### `npm start`
+[Visualisation of the website](https://hopeful-lumiere-a6ae81.netlify.app)
 
-Runs the app in the development mode.<br />
+### Application features
+
+Application is fully responsive and offers basic functionalities such as:
+
+- displaying full list of products as well as list of selected products on Home page
+- displaying single product information
+- filtering products by multiple categories as well as by search input
+- wishlist pop-up notification
+- adding/removing products to/from cart/wishlist
+- changing quantity of products in cart
+- calculatining summarised price in cart as well as PayPal payment
+- contact form
+
+### Available Scripts:
+
+After cloning repository, install required packages using command
+
+### `npm install`
+
+### `npm start`- runs the app in the development mode
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### `npm run build`- builds the app for production to the `build` folder.<br />
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
