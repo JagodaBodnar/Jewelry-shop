@@ -14,7 +14,7 @@ const StyledContactNavContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 60vw;
-  margin-top: 8vh;
+  margin: 12vh auto 5px;
 `;
 const StyledFormContainer = styled.form`
   min-height: 69vh;

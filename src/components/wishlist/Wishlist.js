@@ -10,11 +10,11 @@ import { device } from "../../globalStyles/Device";
 
 const StyledEmptyWishlist = styled.div`
   min-height: 82vh;
-  margin-top: 20px;
+  margin-top: 12vh;
 `;
 const StyledWishlistContainer = styled.div`
   min-height: 82vh;
-  margin-top: 20px;
+  margin-top: 12vh;
 `;
 
 const StyledProductList = styled.ul`
