@@ -16,7 +16,7 @@ const StyledNav = styled.nav`
   position: fixed;
   z-index: 101;
   top: 0;
-  width: 100%;
+  width: 100vw;
   min-height: 8vh;
   background-color: #fff;
   border-bottom: solid 1px #ececec;

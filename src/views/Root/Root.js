@@ -12,13 +12,34 @@ import { client } from "../../data/contentfulData";
 import Wishlist from "../../components/wishlist/Wishlist";
 
 const Root = () => {
+  const getCartFromLocalStorage = () => {
+    let localStorageCart;
+    if (localStorage.getItem("cart")) {
+      localStorageCart = JSON.parse(localStorage.getItem("cart"));
+    } else {
+      localStorageCart = [];
+    }
+    console.log(localStorageCart);
+    return localStorageCart;
+  };
+  const getCounterFromLocalStorage = () => {
+    let localStorageCounter;
+    if (localStorage.getItem("cartCounter")) {
+      localStorageCounter = JSON.parse(localStorage.getItem("cartCounter"));
+    } else {
+      localStorageCounter = 0;
+    }
+
+    return localStorageCounter;
+  };
+
   const initialState = [...productsDataArray];
-  const [cartCounter, setCartCounter] = useState(0);
+  const [cartCounter, setCartCounter] = useState(getCounterFromLocalStorage());
   const [products, setProducts] = useState([]);
   const [productsToFilter, setProductsToFilter] = useState([]);
   const [isCartOpen, setCartOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const [cart, setCart] = useState([...new Set([])]);
+  const [cart, setCart] = useState(getCartFromLocalStorage());
   const [wishlist, setWishlist] = useState([...new Set([])]);
   const [categoryFilter, setCategoryFilter] = useState([]);
   const [filterToRemove, setFilterToRemove] = useState([]);
@@ -27,6 +48,17 @@ const Root = () => {
   const [bestsellers, setBestsellers] = useState([]);
   const [emerald, setEmerald] = useState([]);
   const [ruby, setRuby] = useState([]);
+
+  const setCounterToLocalStorage = () => {
+    localStorage.setItem("cartCounter", JSON.stringify(cartCounter));
+  };
+  const setCartToLocalStorage = () => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+  useEffect(() => {
+    setCartToLocalStorage();
+    setCounterToLocalStorage();
+  }, [cart, cartCounter]);
 
   const setContentfulData = (data) => {
     if (data.length !== 0) {
@@ -119,7 +151,12 @@ const Root = () => {
     const filteredProducts = products.filter(
       (product) => product.productName === productName
     );
-    setCart([...new Set([...cart, ...filteredProducts])]);
+
+    if (cart.filter((e) => e.productName === `${productName}`).length > 0) {
+      setCart([...new Set([...cart])]);
+    } else {
+      setCart([...new Set([...cart, ...filteredProducts])]);
+    }
   };
 
   const removeProductFromCart = (productName, productQuantity) => {
