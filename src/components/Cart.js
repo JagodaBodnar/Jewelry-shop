@@ -56,6 +56,10 @@ const StyledModalContainer = styled.div`
   }
   overflow-y: auto;
 `;
+const StyledEmptyCartContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const StyledCartHeader = styled.div`
   display: grid;
@@ -148,70 +152,78 @@ const Cart = ({ history }) => {
               <span></span>
               <HeadingOne cartitemheader>Sum</HeadingOne>
             </StyledCartHeader>
-            <StyledCartItemList>
-              {cart.map((item) => {
-                const {
-                  productName,
-                  productPrice,
-                  productQuantity,
-                  image,
-                } = item;
-                return (
-                  <StyledCartItemElement key={uuidv4()}>
-                    <StyledCartItemImage src={image} alt="product foto" />
-                    <HeadingTwo cartItemName>{productName}</HeadingTwo>
-                    <HeadingTwo bold cartItemQuantity>
-                      <Button
-                        quantity
-                        onClick={() => {
-                          decreaseItemCounter(productName);
-                        }}
-                      >
-                        <IoIosRemove />
-                      </Button>
-                      <StyledProductQuantity>
-                        {productQuantity} {itemCounter}
-                      </StyledProductQuantity>
-                      <Button
-                        quantity
-                        onClick={() => {
-                          increaseItemCounter(productName);
-                        }}
-                      >
-                        <IoIosAdd />
-                      </Button>
-                    </HeadingTwo>
-                    <HeadingTwo bold>{productPrice}$</HeadingTwo>
-                    <Button
-                      close
-                      onClick={() =>
-                        removeProductFromCart(productName, productQuantity)
-                      }
-                    >
-                      <IoIosClose />
-                    </Button>
-                    <HeadingTwo bold>
-                      {productQuantity * productPrice}$
-                    </HeadingTwo>
-                  </StyledCartItemElement>
-                );
-              })}
-            </StyledCartItemList>
-            <StyledTotalCart>
-              <HeadingOne totalSum>TOTAL </HeadingOne>
-              <HeadingTwo totalSum bold>
-                {cartTotal}$
-              </HeadingTwo>
-            </StyledTotalCart>
-            <StyledPayPal>
-              <PaypalButton
-                history={history}
-                clearCart={clearCart}
-                cartTotal={cartTotal}
-                handleCartClose={handleCartClose}
-                clearCartCounter={clearCartCounter}
-              />
-            </StyledPayPal>
+            {cart.length === 0 ? (
+              <StyledEmptyCartContainer>
+                <HeadingTwo>Your cart is empty</HeadingTwo>
+              </StyledEmptyCartContainer>
+            ) : (
+              <>
+                <StyledCartItemList>
+                  {cart.map((item) => {
+                    const {
+                      productName,
+                      productPrice,
+                      productQuantity,
+                      image,
+                    } = item;
+                    return (
+                      <StyledCartItemElement key={uuidv4()}>
+                        <StyledCartItemImage src={image} alt="product foto" />
+                        <HeadingTwo cartItemName>{productName}</HeadingTwo>
+                        <HeadingTwo bold cartItemQuantity>
+                          <Button
+                            quantity
+                            onClick={() => {
+                              decreaseItemCounter(productName);
+                            }}
+                          >
+                            <IoIosRemove />
+                          </Button>
+                          <StyledProductQuantity>
+                            {productQuantity} {itemCounter}
+                          </StyledProductQuantity>
+                          <Button
+                            quantity
+                            onClick={() => {
+                              increaseItemCounter(productName);
+                            }}
+                          >
+                            <IoIosAdd />
+                          </Button>
+                        </HeadingTwo>
+                        <HeadingTwo bold>{productPrice}$</HeadingTwo>
+                        <Button
+                          close
+                          onClick={() =>
+                            removeProductFromCart(productName, productQuantity)
+                          }
+                        >
+                          <IoIosClose />
+                        </Button>
+                        <HeadingTwo bold>
+                          {productQuantity * productPrice}$
+                        </HeadingTwo>
+                      </StyledCartItemElement>
+                    );
+                  })}
+                </StyledCartItemList>
+                <StyledTotalCart>
+                  <HeadingOne totalSum>TOTAL </HeadingOne>
+                  <HeadingTwo totalSum bold>
+                    {cartTotal}$
+                  </HeadingTwo>
+                </StyledTotalCart>
+                <StyledPayPal>
+                  <PaypalButton
+                    history={history}
+                    clearCart={clearCart}
+                    cartTotal={cartTotal}
+                    handleCartClose={handleCartClose}
+                    clearCartCounter={clearCartCounter}
+                  />
+                </StyledPayPal>
+              </>
+            )}
           </StyledModalContainer>
         </Fade>
       </Modal>
