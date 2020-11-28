@@ -84,7 +84,6 @@ const ProductsListElement = ({
   productDesc,
   productQuantity,
   wishList,
-  productId,
 }) => {
   const context = useContext(RootContext);
   const {

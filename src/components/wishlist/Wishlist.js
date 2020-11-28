@@ -33,9 +33,6 @@ const StyledProductList = styled.ul`
     grid-template-columns: repeat(1, 1fr);
     width: 80vw;
   }
-  @media ${device.tablet} {
-    grid-template-columns: repeat(1, 1fr);
-  }
   @media ${device.laptop} {
     grid-template-columns: repeat(2, 1fr);
   }

@@ -5,6 +5,7 @@ import Button from "../../components/reusableComponents/Button";
 import { HeadingTwo } from "../../components/reusableComponents/Heading.js";
 import { BsSearch } from "react-icons/bs";
 import closeFilter from "../../assets/icons/closeFilterSvg.svg";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import {
   productsCategories,
   mineral,
@@ -18,12 +19,15 @@ const AnimatedNavbarWrapper = styled.nav`
   background-color: ${({ theme }) => theme.navyBlue};
   padding: 5px;
   width: 100%;
+  @media ${device.mobileS} {
+    height: 450px;
+  }
 `;
 
 const StyledCategoriesContainer = styled.div`
   @media ${device.mobileS} {
     width: 80vw;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   @media ${device.mobile} {
     width: 80vw;
@@ -41,6 +45,7 @@ const StyledCategoriesContainer = styled.div`
   grid-gap: 5px;
   margin: 20px auto;
 `;
+
 const StyledCategories = styled.ul`
   list-style: none;
   margin-bottom: 15px;
@@ -95,10 +100,11 @@ const StyledSelectedCategoryContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   list-style: none;
-  align-items: center;
+  align-items: start;
 
   @media ${device.mobileS} {
-    grid-column: span 1;
+    grid-column: span 3;
+    flex-direction: column;
   }
   @media ${device.mobile} {
     grid-column: span 1;
@@ -120,10 +126,15 @@ const StyledSelectedCategoryElement = styled.div`
 
 const ProductsFilterMenu = ({ isProductMenuVisible }) => {
   const context = useContext(RootContext);
+  const screenSizeMobile = useMediaQuery("(max-width:576px)");
 
   const anim = useSpring({
     config: { duration: 500 },
-    height: isProductMenuVisible ? "300px" : "0px",
+    height: isProductMenuVisible
+      ? screenSizeMobile
+        ? "450px"
+        : "280px"
+      : "0px",
     opacity: isProductMenuVisible ? "1" : "0",
   });
 

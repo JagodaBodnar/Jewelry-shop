@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { HeadingOne } from "../../components/reusableComponents/Heading";
 import { useSpring, animated } from "react-spring";
 import { device } from "../../globalStyles/Device";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const StyledProductCategoriesContainer = styled.div`
   position: fixed;
@@ -15,22 +16,19 @@ const StyledProductCategoriesContainer = styled.div`
   top: 0;
   width: 100%;
   background-color: #fff;
-  @media ${device.mobileS} {
-    top: 11vh;
-  }
-  @media ${device.mobile} {
-    top: 10vh;
-  }
-  @media ${device.desktop} {
-    top: 8vh;
-  }
+  top: 8vh;
 `;
 const StyledProductNavContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 60vw;
-  margin: 5px auto 5px auto;
+  margin: 3.5rem auto 5px auto;
+  @media ${device.mobileS} {
+    width: 100vw;
+  }
+  @media ${device.mobile} {
+    width: 60vw;
+  }
 `;
 const StyledNoProductsFound = styled.div`
   text-align: center;
@@ -47,9 +45,14 @@ const Products = () => {
   const context = useContext(RootContext);
 
   const [isProductMenuVisible, setProductMenuVisiblity] = useState(false);
+  const screenSizeMobile = useMediaQuery("(max-width:576px)");
   const anim = useSpring({
     config: { duration: 500 },
-    height: isProductMenuVisible ? "300px" : "0px",
+    height: isProductMenuVisible
+      ? screenSizeMobile
+        ? "450px"
+        : "280px"
+      : "0px",
     opacity: isProductMenuVisible ? "1" : "0",
     overflow: "hidden",
   });
@@ -72,7 +75,7 @@ const Products = () => {
           <ProductsFilterMenu isProductMenuVisible={isProductMenuVisible} />
         </animated.div>
       </StyledProductCategoriesContainer>
-      <ProductsList />
+      <ProductsList isProductMenuVisible={isProductMenuVisible} />
       <StyledNoProductsFound>
         {context.products.length === 0
           ? `No products were found matching your selection.`

@@ -21,13 +21,16 @@ const StyledWishlistPopUpContainer = styled.div`
   user-select: none;
   z-index: 9999;
   @media ${device.mobileS} {
-    left: calc(100% - 260px);
+    left: calc(100% - 315px);
   }
   @media ${device.mobile} {
-    left: calc(100% - 280px);
+    left: calc(100% - 315px);
   }
-  @media ${device.laptop} {
-    left: calc(100% - 290px);
+  @media ${device.tablet} {
+    left: calc(100% - 334px);
+  }
+  @media ${device.desktop} {
+    left: calc(100% - 344px);
   }
 `;
 const StyledWishlistPopUpOff = styled.div`
@@ -59,7 +62,7 @@ const StyledWishlistPopUp = styled.div`
     content: "";
     position: absolute;
     top: -10px;
-    left: 50%;
+    left: 70%;
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
@@ -111,7 +114,6 @@ const WishlistPopUp = () => {
                   productQuantity,
                   productDesc,
                   image,
-                  productId,
                 } = item;
                 return (
                   <StyledProductListElement key={uuidv4()}>
