@@ -265,8 +265,12 @@ const Root = () => {
   };
   const filterProductsBySearchInput = (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     let temporary = [...productsToFilter];
     let tempProducts = [...temporary];
+=======
+    let tempProducts = [...products];
+>>>>>>> cc42131073e31b8265e41bb34cb3726d03dd0453
     const searchInputValue = e.target.search.value;
 
     if (searchInputValue.length > 0) {
