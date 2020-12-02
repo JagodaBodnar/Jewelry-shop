@@ -74,7 +74,6 @@ const Root = () => {
 
       const sortingAlgorithm = (firstProduct, secondProduct) =>
         firstProduct.productId - secondProduct.productId;
-
       const sortedProducts = products.sort(sortingAlgorithm);
       let bestseller = [];
       bestseller.push(sortedProducts[0], sortedProducts[18]);
@@ -82,7 +81,6 @@ const Root = () => {
       emerald.push(sortedProducts[12], sortedProducts[43]);
       let ruby = [];
       ruby.push(sortedProducts[45], sortedProducts[47]);
-
       setBestsellers(bestseller);
       setEmerald(emerald);
       setRuby(ruby);
@@ -267,7 +265,8 @@ const Root = () => {
   };
   const filterProductsBySearchInput = (e) => {
     e.preventDefault();
-    let tempProducts = [...initialState];
+    let temporary = [...productsToFilter];
+    let tempProducts = [...temporary];
     const searchInputValue = e.target.search.value;
 
     if (searchInputValue.length > 0) {
