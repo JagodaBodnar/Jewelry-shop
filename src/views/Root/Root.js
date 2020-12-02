@@ -267,7 +267,7 @@ const Root = () => {
   };
   const filterProductsBySearchInput = (e) => {
     e.preventDefault();
-    let tempProducts = [...initialState];
+    let tempProducts = [...products];
     const searchInputValue = e.target.search.value;
 
     if (searchInputValue.length > 0) {
