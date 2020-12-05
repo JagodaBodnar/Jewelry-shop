@@ -17,6 +17,7 @@ Application is fully responsive and offers basic functionalities such as:
 - displaying full list of products as well as list of selected products on Home page
 - displaying single product information
 - filtering products by multiple categories as well as by search input
+![Demo](https://user-images.githubusercontent.com/49833192/101262469-47ae3a80-373f-11eb-9523-d11df0066e13.gif)
 - wishlist pop-up notification
 - adding/removing products to/from cart/wishlist
 - changing quantity of products in cart
