@@ -17,10 +17,12 @@ Application is fully responsive and offers basic functionalities such as:
 - displaying full list of products as well as list of selected products on Home page
 - displaying single product information
 - filtering products by multiple categories as well as by search input
-![Demo](https://user-images.githubusercontent.com/49833192/101262469-47ae3a80-373f-11eb-9523-d11df0066e13.gif)
+![Demo](https://user-images.githubusercontent.com/49833192/101262613-63661080-3740-11eb-84a5-005d9e317f1a.gif)
 - wishlist pop-up notification
+![Demo](https://user-images.githubusercontent.com/49833192/101263146-68788f00-3743-11eb-9f25-4c06a970a0fb.gif)
 - adding/removing products to/from cart/wishlist
 - changing quantity of products in cart
+![Demo](https://user-images.githubusercontent.com/49833192/101262980-619d4c80-3742-11eb-8879-709b5b903e49.gif)
 - calculatining summarised price in cart as well as PayPal payment
 - contact form
 
