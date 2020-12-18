@@ -1,8 +1,8 @@
 ### Project description
 
 Application was created with [create-react-app](https://github.com/facebook/create-react-app) for education purposes.<br />
-App has been built using React Hooks and has been styled using [styled-components](https://styled-components.com/).
-Contant from is handeled by [EmailJS](https://www.emailjs.com/).
+App has been built using React Hooks and styled using [styled-components](https://styled-components.com/).<br />
+Contact from is handeled by [EmailJS](https://www.emailjs.com/).
 Product images has been downloaded from [pngguru](https://www.pngguru.com/) according to license notification on the website no attribution is required for Non-Commercial-Use.<br />
 Home page images has been acquired as part of a free offert from [ADOBE STOCK](https://stock.adobe.com/).<br />
 Cart paypal feature requires APIkey from [PayPalSandbox](https://developer.paypal.com/), which means that own key has to be obtained in order to use it.<br />
