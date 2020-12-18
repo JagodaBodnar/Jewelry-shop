@@ -1,39 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from "../Home/Home";
-import Contact from "../Contact/Contact";
-import Products from "../Products/Products";
-import SingleProduct from "../SingleProduct/SingleProduct";
-import { routes } from "../../routes";
+import { BrowserRouter } from "react-router-dom";
+import emailjs from "emailjs-com";
 import MainTemplate from "../../templates/MainTemplate";
 import RootContext from "../../context/context";
-import { productsDataArray } from "../../localData/productsDataArray";
 import { client } from "../../data/contentfulData";
-import Wishlist from "../../components/wishlist/Wishlist";
+import Router from "../../routing/Router";
+import {
+  getCartFromLocalStorage,
+  getCounterFromLocalStorage,
+} from "../../utils/getElementFromLocalStorage";
 
 const Root = () => {
-  const getCartFromLocalStorage = () => {
-    let localStorageCart;
-    if (localStorage.getItem("cart")) {
-      localStorageCart = JSON.parse(localStorage.getItem("cart"));
-    } else {
-      localStorageCart = [];
-    }
-    console.log(localStorageCart);
-    return localStorageCart;
-  };
-  const getCounterFromLocalStorage = () => {
-    let localStorageCounter;
-    if (localStorage.getItem("cartCounter")) {
-      localStorageCounter = JSON.parse(localStorage.getItem("cartCounter"));
-    } else {
-      localStorageCounter = 0;
-    }
-
-    return localStorageCounter;
-  };
-
-  const initialState = [...productsDataArray];
   const [cartCounter, setCartCounter] = useState(getCounterFromLocalStorage());
   const [products, setProducts] = useState([]);
   const [productsToFilter, setProductsToFilter] = useState([]);
@@ -66,7 +43,9 @@ const Root = () => {
         const image = item.fields.productImage.fields.file.url;
         const category = item.fields.categories;
         const categories = Object.values(category);
-        const product = { ...item.fields, image, categories };
+        const product = { ...item.fields, categories };
+
+        product.productImage = image;
         return product;
       });
       setProducts(products);
@@ -88,14 +67,16 @@ const Root = () => {
   };
 
   const clearCart = () => {
-    setCart([...new Set([])]);
+    cart.forEach((item) => {
+      item.productQuantity = 1;
+    });
+    setCart([]);
   };
 
   const increaseItemCounter = (productName) => {
     cart.forEach((item) => {
       if (item.productName === productName) {
         item.productQuantity = item.productQuantity + 1;
-      } else {
       }
     });
     increaseCartCounter();
@@ -105,7 +86,6 @@ const Root = () => {
       if (item.productName === productName && item.productQuantity > 1) {
         item.productQuantity = item.productQuantity - 1;
         decreaseCartCounter();
-      } else {
       }
     });
   };
@@ -158,16 +138,13 @@ const Root = () => {
   };
 
   const removeProductFromCart = (productName, productQuantity) => {
-    const filteredProducts = cart.filter(
-      (product) => product.productName !== productName
-    );
-    setCartCounter(cartCounter - productQuantity);
-    cart.forEach((item) => {
-      if (item.productName === productName) {
-        item.productQuantity = 1;
-      } else {
+    const filteredProducts = cart.filter((product) => {
+      if (product.productName === productName) {
+        product.productQuantity = 1;
       }
+      return product.productName !== productName;
     });
+    setCartCounter(cartCounter - productQuantity);
 
     setCart([...new Set([...filteredProducts])]);
   };
@@ -186,7 +163,6 @@ const Root = () => {
   const decreaseCartCounter = () => {
     if (cartCounter > 0) {
       setCartCounter(cartCounter - 1);
-    } else {
     }
   };
   const filterProducts = (e) => {
@@ -205,63 +181,26 @@ const Root = () => {
     }
   };
 
-  const categoryCondition = (category, filterAttribute) => {
-    if (category === filterAttribute) {
-      const indexOfCategory = categoryFilter.indexOf(category);
-      categoryFilter.splice(indexOfCategory, 1);
-      setCategoryFilter([...categoryFilter]);
-    }
-  };
   const removeFilterCategory = (e) => {
     let filterAttribute = e.target.getAttribute("data-target");
-    setFilterToRemove(
-      filterToRemove.filter((filter) => {
-        return filter !== filterAttribute;
-      })
-    );
-    let number = categoryFilter.length;
 
-    switch (true) {
-      case number <= 1:
-        getContentfulData();
-        setCategoryFilter([]);
-        break;
-      case number === 2:
-        categoryFilter.filter((category) => {
-          categoryCondition(category, filterAttribute);
-          const filteredProducts = productsToFilter.filter((product) =>
-            product.categories.includes(...categoryFilter)
-          );
+    const filterToBeRemoved = filterToRemove.filter((filter) => {
+      return filter !== filterAttribute;
+    });
+    setFilterToRemove(filterToBeRemoved);
 
-          setProducts([...filteredProducts]);
-        });
-        break;
+    const checkIfOneArrayIncludesOther = (arr, target) =>
+      target.every((item) => arr.includes(item));
 
-      case number === 3:
-        categoryFilter.filter((category) => {
-          categoryCondition(category, filterAttribute);
-          const filteredProducts = productsToFilter.filter(
-            (product) =>
-              product.categories.includes(categoryFilter[0]) &&
-              product.categories.includes(categoryFilter[1])
-          );
-          setProducts([...filteredProducts]);
-        });
-
-        break;
-      default:
-        categoryFilter.filter((category) => {
-          categoryCondition(category, filterAttribute);
-          const filteredProducts = productsToFilter.filter(
-            (product) =>
-              product.categories.includes(categoryFilter[0]) &&
-              product.categories.includes(categoryFilter[1]) &&
-              product.categories.includes(categoryFilter[2])
-          );
-
-          setProducts([...filteredProducts]);
-        });
-    }
+    const filteredProducts = productsToFilter.filter((product) => {
+      if (
+        checkIfOneArrayIncludesOther(product.categories, filterToBeRemoved) ===
+        true
+      ) {
+        return product;
+      }
+    });
+    setProducts([...filteredProducts]);
   };
   const filterProductsBySearchInput = (e) => {
     e.preventDefault();
@@ -296,7 +235,6 @@ const Root = () => {
       copyOfCart.forEach((item) => {
         if (item.productName === productName) {
           item.productQuantity = item.productQuantity + 1;
-        } else {
         }
       });
 
@@ -324,8 +262,24 @@ const Root = () => {
 
   const sendQuestion = (e) => {
     e.preventDefault();
-    e.target.reset();
+
+    emailjs
+      .sendForm(
+        "service_plarh0j",
+        "template_7bbl3dd",
+        e.target,
+        "user_oRqOU5S9CjVoFm0t7S0mI"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
     setIsChecked(false);
+    e.target.reset();
   };
   const handleChange = () => {
     setIsChecked(!isChecked);
@@ -387,13 +341,7 @@ const Root = () => {
         }}
       >
         <MainTemplate>
-          <Switch>
-            <Route exact path={routes.home} component={Home} />
-            <Route exact path={routes.products} component={Products} />
-            <Route path={routes.contact} component={Contact} />
-            <Route path={routes.list} component={Wishlist} />
-            <Route path="/products/:name" component={SingleProduct} />
-          </Switch>
+          <Router />
         </MainTemplate>
       </RootContext.Provider>
     </BrowserRouter>

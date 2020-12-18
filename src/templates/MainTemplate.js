@@ -11,12 +11,10 @@ const MainTemplate = ({ children }) => {
     <>
       <GlobalStyle />
       <ThemeProvider theme={mainGlobalStyles}>
-        <>
-          <Navbar />
-          <Cart />
-          <>{children}</>
-          <Footer />
-        </>
+        <Navbar />
+        <Cart />
+        {children}
+        <Footer />
       </ThemeProvider>
     </>
   );

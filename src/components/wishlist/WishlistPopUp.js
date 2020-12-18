@@ -1,102 +1,20 @@
 import React, { useContext } from "react";
 import RootContext from "../../context/context";
-import styled from "styled-components";
 import { HeadingTwo } from "./../reusableComponents/Heading";
-import { Link } from "react-router-dom";
 import Button from "./../reusableComponents/Button";
 import { IoIosClose } from "react-icons/io";
 import { routes } from "../../routes";
-import { device } from "../../globalStyles/Device";
 import { v4 as uuidv4 } from "uuid";
-
-const StyledWishlistPopUpContainer = styled.div`
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  top: -15px;
-  left: calc(100% - 290px);
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  z-index: 9999;
-  @media ${device.mobileS} {
-    left: calc(100% - 315px);
-  }
-  @media ${device.mobile} {
-    left: calc(100% - 315px);
-  }
-  @media ${device.tablet} {
-    left: calc(100% - 334px);
-  }
-  @media ${device.desktop} {
-    left: calc(100% - 344px);
-  }
-`;
-const StyledWishlistPopUpOff = styled.div`
-  visibility: hidden;
-  width: 278px;
-  background-color: #fff;
-  border: 1px solid grey;
-  color: white;
-  text-align: center;
-  border-radius: 6px;
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  top: 5%;
-`;
-const StyledWishlistPopUp = styled.div`
-  visibility: visible;
-  width: 278px;
-  background-color: #fff;
-  border: 1px solid grey;
-  color: white;
-  text-align: center;
-  border-radius: 6px;
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  top: 5%;
-  &::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: 70%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent grey transparent;
-  }
-`;
-const StyledOverflowContainer = styled.div`
-  max-height: 400px;
-  overflow-y: auto;
-`;
-const StyledProductListElement = styled.li`
-  width: 258px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #ececec;
-  padding: 5px;
-`;
-const StyledLink = styled(Link)`
-  width: 220px;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 15px;
-`;
-const StyledProductImage = styled.img`
-  width: 50px;
-  height: 50px;
-`;
-const StyledGoToWishlist = styled(Link)`
-  color: #ce3c72;
-`;
+import {
+  StyledWishlistPopUpContainer,
+  StyledWishlistPopUpOff,
+  StyledWishlistPopUp,
+  StyledOverflowContainer,
+  StyledProductListElement,
+  StyledLink,
+  StyledProductImage,
+  StyledGoToWishlist,
+} from "./WishlistPopUpStyles";
 
 const WishlistPopUp = () => {
   const context = useContext(RootContext);
@@ -113,7 +31,7 @@ const WishlistPopUp = () => {
                   productPrice,
                   productQuantity,
                   productDesc,
-                  image,
+                  productImage,
                 } = item;
                 return (
                   <StyledProductListElement key={uuidv4()}>
@@ -123,13 +41,16 @@ const WishlistPopUp = () => {
                         state: {
                           productName,
                           productPrice,
-                          image,
+                          productImage,
                           productDesc,
                           productQuantity,
                         },
                       }}
                     >
-                      <StyledProductImage src={image} alt="product foto" />
+                      <StyledProductImage
+                        src={productImage}
+                        alt="product foto"
+                      />
                       <HeadingTwo>{productName}</HeadingTwo>
                       <HeadingTwo>{productPrice}$</HeadingTwo>
                     </StyledLink>

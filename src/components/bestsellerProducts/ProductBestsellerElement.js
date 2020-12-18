@@ -1,81 +1,25 @@
 import React, { useContext } from "react";
 import RootContext from "../../context/context";
-import styled from "styled-components";
 import { HeadingTwo } from "../reusableComponents/Heading.js";
 import Button from "../reusableComponents/Button.js";
-import { FaShoppingBag, FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { device } from "../../globalStyles/Device";
-
-const StyledWishlistButtonContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`;
-const StyledTooltip = styled.span`
-  color: #ead065;
-  font-size: 10px;
-  margin: 0 5px;
-  opacity: 0;
-  font-family: "Scope One", serif;
-  vertical-align: top;
-`;
-const StyledImgContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const StyledProductImage = styled.img`
-  @media ${device.mobileS} {
-    width: 170px;
-    height: 160px;
-  }
-  @media ${device.mobile} {
-    width: 170px;
-    height: 160px;
-  }
-  @media ${device.desktop} {
-    width: 215px;
-    height: 205px;
-  }
-`;
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;
-const StyledAddToCartButtonContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`;
-const StyledAddToCart = styled(FaShoppingBag)`
-  font-size: 18px;
-  color: transparent;
-`;
-const StyledIsOnWishlist = styled(FaHeart)`
-  font-size: 18px;
-  color: #ce3c72;
-`;
-const StyledAddToWishlist = styled(FaHeart)`
-  font-size: 18px;
-  color: transparent;
-`;
-const StyledProductListElement = styled.div`
-  padding: 15px;
-  &:hover ${StyledAddToWishlist}, &:hover ${StyledAddToCart} {
-    color: #c2c2c2;
-    transition: 0.5s;
-    &:hover,
-    &:hover + ${StyledTooltip} {
-      color: ${({ theme }) => theme.pink};
-      opacity: 1;
-    }
-  }
-`;
+import {
+  StyledWishlistButtonContainer,
+  StyledTooltip,
+  StyledImgContainer,
+  StyledProductImage,
+  StyledLink,
+  StyledAddToCartButtonContainer,
+  StyledAddToCart,
+  StyledIsOnWishlist,
+  StyledAddToWishlist,
+  StyledProductListElement,
+} from "./ProductBestsellerElementStyles";
 
 const ProductsBestsellerElement = ({
   productName,
   productPrice,
-  image,
+  productImage,
   productQuantity,
   productDesc,
   wishList,
@@ -120,7 +64,7 @@ const ProductsBestsellerElement = ({
           state: {
             productName,
             productPrice,
-            image,
+            productImage,
             productQuantity,
             productDesc,
             wishList,
@@ -128,7 +72,7 @@ const ProductsBestsellerElement = ({
         }}
       >
         <StyledImgContainer>
-          <StyledProductImage src={image} alt="product foto" />
+          <StyledProductImage src={productImage} alt="product foto" />
         </StyledImgContainer>
         <HeadingTwo>{productName}</HeadingTwo>
         <HeadingTwo price>

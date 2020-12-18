@@ -1,48 +1,10 @@
 import React, { useContext } from "react";
 import RootContext from "../context/context";
 import ProductsListElement from "./ProductsListElement";
-import styled from "styled-components";
-import { device } from "../globalStyles/Device";
 import { v4 as uuidv4 } from "uuid";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useSpring, animated } from "react-spring";
-
-const StyledProductList = styled.ul`
-  @media ${device.mobileS} {
-    grid-template-columns: repeat(1, 1fr);
-    margin: 20vh auto;
-  }
-  @media ${device.mobile} {
-    grid-template-columns: repeat(2, 1fr);
-    margin: 20vh auto;
-  }
-  @media ${device.laptop} {
-    grid-template-columns: repeat(3, 1fr);
-    width: 80vw;
-  }
-  @media ${device.desktop} {
-    width: 80vw;
-  }
-  display: grid;
-  grid-gap: 5px;
-  list-style: none;
-  background-color: #ffffff;
-`;
-
-const StyledProductItem = styled.li`
-  justify-self: center;
-  margin: 10px;
-  transition: ease 0.2s;
-  cursor: pointer;
-  padding: 0;
-  border-bottom: 1px solid #ececec;
-  &:hover {
-    border-radius: 5px;
-    box-shadow: 0 0 11px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
-    border-bottom: none;
-  }
-`;
+import { StyledProductList, StyledProductItem } from "./ProductsListStyles";
 
 const ProductsList = ({ isProductMenuVisible }) => {
   const context = useContext(RootContext);

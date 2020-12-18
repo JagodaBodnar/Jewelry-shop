@@ -1,82 +1,20 @@
 import React, { useContext, useState } from "react";
-import styled from "styled-components";
 import Button from "../../components/reusableComponents/Button";
-import { FaHeart } from "react-icons/fa";
 import RootContext from "../../context/context";
 import { HeadingOne } from "../../components/reusableComponents/Heading";
-import { device } from "../../globalStyles/Device";
+import {
+  StyledAddToWishlist,
+  StyledButtonContainer,
+  StyledDetailsContainer,
+  StyledHeaderContainer,
+  StyledImage,
+  StyledImgContainer,
+  StyledSingleProductContainer,
+  StyledPriceParagraph,
+  StyledIsOnWishlist,
+  StyledProductDescription,
+} from "./SingleProductStyles";
 
-const StyledSingleProductContainer = styled.div`
-  @media ${device.mobileS} {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  @media ${device.mobile} {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  @media ${device.tablet} {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  width: 80vw;
-  height: 63vh;
-  margin: 18vh auto 10vh auto;
-  display: grid;
-  grid-gap: 10px;
-  border-bottom: 1px solid #ececec;
-  border-top: 1px solid #ececec;
-`;
-const StyledImgContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const StyledDetailsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-`;
-const StyledHeaderContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-`;
-const StyledPriceParagraph = styled.p`
-  font-size: 25px;
-  text-align: center;
-  margin-top: 20px;
-  color: ${({ theme }) => theme.indigo};
-`;
-const StyledIsOnWishlist = styled(FaHeart)`
-  font-size: 18px;
-  color: #ce3c72;
-`;
-const StyledAddToWishlist = styled(FaHeart)`
-  font-size: 18px;
-  color: #c2c2c2;
-`;
-const StyledButtonContainer = styled.div`
-  display: flex;
-`;
-const StyledProductDescription = styled.div`
-  text-align: center;
-  width: 80%;
-  color: ${({ theme }) => theme.grey};
-`;
-const StyledImage = styled.img`
-  @media ${device.mobileS} {
-    width: 240px;
-    height: 230px;
-  }
-  @media ${device.mobile} {
-    width: 278px;
-    height: 268px;
-  }
-  @media ${device.laptop} {
-    width: auto;
-    height: auto;
-  }
-`;
 const SingleProduct = (props) => {
   const context = useContext(RootContext);
   const {
@@ -88,7 +26,7 @@ const SingleProduct = (props) => {
   } = context;
   const {
     productName,
-    image,
+    productImage,
     productPrice,
     productDesc,
     wishList,
@@ -102,7 +40,7 @@ const SingleProduct = (props) => {
     <>
       <StyledSingleProductContainer>
         <StyledImgContainer>
-          <StyledImage src={image} alt="single product foto" />
+          <StyledImage src={productImage} alt="single product foto" />
         </StyledImgContainer>
         <StyledDetailsContainer>
           <StyledHeaderContainer>
