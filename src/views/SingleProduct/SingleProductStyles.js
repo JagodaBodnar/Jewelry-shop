@@ -13,7 +13,7 @@ export const StyledSingleProductContainer = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
   width: 80vw;
-  height: 63vh;
+  min-height: 63vh;
   margin: 18vh auto 10vh auto;
   display: grid;
   grid-gap: 10px;
@@ -53,11 +53,13 @@ export const StyledAddToWishlist = styled(FaHeart)`
 `;
 export const StyledButtonContainer = styled.div`
   display: flex;
+  margin-top: 10px;
 `;
 export const StyledProductDescription = styled.div`
   text-align: center;
   width: 80%;
   color: ${({ theme }) => theme.grey};
+  margin-top: 10px;
 `;
 export const StyledImage = styled.img`
   @media ${device.mobileS} {

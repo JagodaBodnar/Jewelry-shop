@@ -32,6 +32,7 @@ const WishlistPopUp = () => {
                   productQuantity,
                   productDesc,
                   productImage,
+                  wishList,
                 } = item;
                 return (
                   <StyledProductListElement key={uuidv4()}>
@@ -44,6 +45,7 @@ const WishlistPopUp = () => {
                           productImage,
                           productDesc,
                           productQuantity,
+                          wishList,
                         },
                       }}
                     >

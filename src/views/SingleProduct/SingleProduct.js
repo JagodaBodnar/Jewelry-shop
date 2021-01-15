@@ -72,7 +72,7 @@ const SingleProduct = (props) => {
             <Button
               addToCart
               onClick={() => {
-                handleDuplicateNamesOfProducts(productName, productPrice);
+                handleDuplicateNamesOfProducts(productName);
                 addProductToCart(productName);
                 increaseCartCounter(productName);
               }}

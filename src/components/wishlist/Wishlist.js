@@ -40,6 +40,7 @@ const Wishlist = () => {
                 productPrice,
                 productQuantity,
                 productImage,
+                wishList,
               } = item;
               return (
                 <>
@@ -61,6 +62,7 @@ const Wishlist = () => {
                             productPrice,
                             productImage,
                             productQuantity,
+                            wishList,
                           },
                         }}
                       >
@@ -77,10 +79,7 @@ const Wishlist = () => {
                       <StyledAddToCartButtonContainer>
                         <Button
                           onClick={() => {
-                            handleDuplicateNamesOfProducts(
-                              productName,
-                              productPrice
-                            );
+                            handleDuplicateNamesOfProducts(productName);
                             addProductToCart(productName);
                             increaseCartCounter(productName);
                           }}

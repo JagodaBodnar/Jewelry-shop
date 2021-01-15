@@ -88,7 +88,7 @@ const ProductsBestsellerElement = ({
         >
           <Button
             onClick={() => {
-              handleDuplicateNamesOfProducts(productName, productPrice);
+              handleDuplicateNamesOfProducts(productName);
               addProductToCart(productName);
               increaseCartCounter(productName);
             }}

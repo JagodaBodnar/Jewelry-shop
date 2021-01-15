@@ -74,7 +74,7 @@ const ProductsListElement = ({
       <StyledAddToCartButtonContainer>
         <Button
           onClick={() => {
-            handleDuplicateNamesOfProducts(productName, productPrice);
+            handleDuplicateNamesOfProducts(productName);
             addProductToCart(productName);
             increaseCartCounter(productName);
           }}
