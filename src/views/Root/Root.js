@@ -8,6 +8,7 @@ import Router from "../../routing/Router";
 import {
   getCartFromLocalStorage,
   getCounterFromLocalStorage,
+  getWishlistFromLocalStorage,
 } from "../../utils/getElementFromLocalStorage";
 
 const Root = () => {
@@ -17,7 +18,7 @@ const Root = () => {
   const [isCartOpen, setCartOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [cart, setCart] = useState(getCartFromLocalStorage());
-  const [wishlist, setWishlist] = useState([...new Set([])]);
+  const [wishlist, setWishlist] = useState(getWishlistFromLocalStorage());
   const [categoryFilter, setCategoryFilter] = useState([]);
   const [filterToRemove, setFilterToRemove] = useState([]);
   const [cartTotal, setCartTotal] = useState(10);
@@ -32,10 +33,29 @@ const Root = () => {
   const setCartToLocalStorage = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   };
+  const setWishlistToLocalStorage = () => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  };
+
+  const forEachItemFromWishlist = () => {
+    const returnElementsFromWishlist = wishlist.map((item) => {
+      return item.productName;
+    });
+    products.map((product) => {
+      returnElementsFromWishlist.forEach((item) => {
+        if (product.productName === item) {
+          return (product.wishList = true);
+        }
+      });
+    });
+  };
+  forEachItemFromWishlist();
+
   useEffect(() => {
     setCartToLocalStorage();
     setCounterToLocalStorage();
-  }, [cart, cartCounter]);
+    setWishlistToLocalStorage();
+  }, [cart, cartCounter, wishlist]);
 
   const setContentfulData = (data) => {
     if (data.length !== 0) {
@@ -93,7 +113,11 @@ const Root = () => {
     const filteredProducts = products.filter(
       (product) => product.productName === productName
     );
-    setWishlist([...new Set([...wishlist, ...filteredProducts])]);
+    if (wishlist.filter((e) => e.productName === `${productName}`).length > 0) {
+      setWishlist([...new Set([...wishlist])]);
+    } else {
+      setWishlist([...new Set([...wishlist, ...filteredProducts])]);
+    }
   };
 
   const removeProductFromWishlist = (productName) => {
@@ -129,7 +153,6 @@ const Root = () => {
     const filteredProducts = products.filter(
       (product) => product.productName === productName
     );
-
     if (cart.filter((e) => e.productName === `${productName}`).length > 0) {
       setCart([...new Set([...cart])]);
     } else {

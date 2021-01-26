@@ -17,3 +17,14 @@ export const getCounterFromLocalStorage = () => {
 
   return localStorageCounter;
 };
+
+export const getWishlistFromLocalStorage = () => {
+  let localStorageWishlist;
+  if (localStorage.getItem("wishlist")) {
+    localStorageWishlist = JSON.parse(localStorage.getItem("wishlist"));
+  } else {
+    localStorageWishlist = [];
+  }
+
+  return localStorageWishlist;
+};

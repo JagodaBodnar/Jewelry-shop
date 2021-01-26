@@ -1,6 +1,6 @@
 ### Project description
 
-Application was created with [create-react-app](https://github.com/facebook/create-react-app) for education purposes.<br />
+Application was created with [create-react-app](https://github.com/facebook/create-react-app) for educational purposes.<br />
 App has been built using React Hooks and styled using [styled-components](https://styled-components.com/).<br />
 Contact from is handeled by [EmailJS](https://www.emailjs.com/).
 Product images has been downloaded from [pngguru](https://www.pngguru.com/) according to license notification on the website no attribution is required for Non-Commercial-Use.<br />
@@ -22,22 +22,16 @@ Application is fully responsive and offers basic functionalities such as:
 
 ![Demo](https://user-images.githubusercontent.com/49833192/101262613-63661080-3740-11eb-84a5-005d9e317f1a.gif)
 
-
 - wishlist pop-up notification
-![Demo](https://user-images.githubusercontent.com/49833192/101262980-619d4c80-3742-11eb-8879-709b5b903e49.gif)
-
+  ![Demo](https://user-images.githubusercontent.com/49833192/101262980-619d4c80-3742-11eb-8879-709b5b903e49.gif)
 
 - adding/removing products to/from cart/wishlist
 - changing quantity of products in cart
 
 ![Demo](https://user-images.githubusercontent.com/49833192/101263146-68788f00-3743-11eb-9f25-4c06a970a0fb.gif)
 
-
 - calculatining summarised price in cart as well as PayPal payment
-![Demo](https://user-images.githubusercontent.com/49833192/102623586-05bfc400-4143-11eb-94bc-19d722eb4bb8.gif)
-
-
-
+  ![Demo](https://user-images.githubusercontent.com/49833192/102623586-05bfc400-4143-11eb-94bc-19d722eb4bb8.gif)
 
 - contact form
 
